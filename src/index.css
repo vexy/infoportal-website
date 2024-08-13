@@ -1,0 +1,11 @@
+body{
+    margin:0;
+    font-family:sans-serif;
+
+    /*dark theme just for test*/
+    background-color: #040404;
+    color:white;
+}
+*:visited{
+    color:moccasin;
+}
