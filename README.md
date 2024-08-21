@@ -1,11 +1,19 @@
 # Counting platform
-This repository contains simple implementation of the publicly available counting/voting station.
+This repository contains source code of public counting station website.
+
+## Features
+  - [ ] sign with Google
+  - [ ] preview questions
+  - [ ] post new question
+  - [ ] preview results
+  - [ ] share questions
 
 ## TechStack
-(_add simple explanation of the tech stack here_)
+  - `React`
+  - `Supabase`
 
-### Contribution
-Want to contribute? Check out project pages.
+### Feel like contributing ?
+Please, just head to our [projects page](https://github.com/users/vexy/projects/2) for bigger picture.
 
 ### Licence
 Licensed as GPL-3.0
