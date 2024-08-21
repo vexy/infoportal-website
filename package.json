@@ -1,7 +1,7 @@
 {
-  "name": "counting-platform-frontend",
-  "version": "1.0.0",
-  "description": "This repository contains simple implementation of the publicly available counting/voting station.",
+  "name": "public-counting-platform",
+  "version": "0.0.1",
+  "description": "JavaScript implementation of public polls website",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -9,7 +9,11 @@
     "build": "vite build",
     "serve": "vite preview"
   },
-  "keywords": [],
+  "keywords": [
+    "JavaScript",
+    "counting",
+    "polls"
+  ],
   "author": "",
   "license": "ISC",
   "devDependencies": {
@@ -19,6 +23,7 @@
   "dependencies": {
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-native": "^0.75.2",
     "react-router-dom": "^6.26.0"
   }
 }
