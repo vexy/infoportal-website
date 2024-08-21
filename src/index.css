@@ -9,12 +9,67 @@
 
     --primary: #104071;
     --secondary: #CAA534;
+
+    --size-1: 9.44px;
+    --size-2: 15.28px;
+    --size-3: 24.72px;
+    --size-4: 40px;
+    --size-5: 64.72px;
 }
 
 body{
     margin:0;
-    font-family:sans-serif;
+
+    font-size:var(--size-3);
+    font-family: "Finlandica", sans-serif;
+    font-optical-sizing: auto;
 
     background-color: var(--background);
     color:var(--black);
+    display:flex;
+    justify-content: center;
+}
+
+ul {
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+input{
+    border:none;
+    font-size:unset;
+    font-family:unset;
+    background-image:none;
+    background-color:transparent;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    padding:0;
+}
+input:focus{
+    outline: none;
+}
+
+a.nostyle:link {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+a.nostyle:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.flex{
+    display:-webkit-box;display:-ms-flexbox;display:flex;
+}
+.flex-column{
+    -webkit-box-orient:vertical;-webkit-box-direction:normal;-ms-flex-direction:column;flex-direction:column;
+}
+
+.flex-main-space-between{
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
 }
