@@ -3,8 +3,10 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 
 import App from './pages/App.jsx'
+import Feed from './pages/Feed.jsx'
 import Survey from './pages/Survey.jsx'
-import Question from './pages/Question.jsx'
+import Post from './pages/Post.jsx'
+import About from './pages/About.jsx'
 import PageNotFound404 from './pages/404.jsx'
 
 import './index.css'
@@ -22,14 +24,20 @@ const router = createBrowserRouter([
     errorElement: <PageNotFound404 />
   },
   {
-    path: '/survey',
+    path: '/feed',
+    element: <Feed />,
+  },
+  {
+    path: '/feed/:questionId',
     element: <Survey />,
-    children: [
-      {
-        path: '/survey/:questionId',
-        element: <Question />,
-      },
-    ]
+  },
+  {
+    path: '/post',
+    element: <Post />,
+  },
+  {
+    path: '/about',
+    element: <About />,
   },
 ]);
 

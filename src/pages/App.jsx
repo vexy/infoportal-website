@@ -6,7 +6,9 @@ function App() {
     <>
         <div>
             <h1>Dobrodošli na platformu za glasanje!</h1>
-            <Link to="/survey">Napravi razliku</Link>
+            <Link to="/feed">Napravi razliku</Link>
+            <br></br>
+            <Link to="/about">Learn More</Link>
         </div>
     </>
   );
