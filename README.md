@@ -2,7 +2,7 @@
 This repository contains simple implementation of the publicly available counting/voting station.
 
 ## TechStack
-(_add simple explanation of the tech stack here_)
+Website is made using `SvelteKit` and `TypeScript`.
 
 ### Contribution
 Want to contribute? Check out project pages.
