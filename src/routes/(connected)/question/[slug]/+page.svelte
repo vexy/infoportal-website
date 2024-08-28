@@ -18,4 +18,5 @@
 <p> { aQuestion.isAnswered } </p>
 <p> TOTAL VOTERS: { aQuestion.totalVoters } </p>
 
-<!-- <p>This is read from environment variable</p> -->
+<p>URL: { data.url }</p>
+<p>SHASH_HASH { data.secret }</p>
