@@ -1,6 +1,5 @@
 import { SUPABASE_ANON_KEY, SUPABASE_URL } from '$env/static/private'
 import type { LayoutServerLoad } from './$types'
-// import type { LayoutLoad } from './$types'
 import { createBrowserClient, createServerClient, isBrowser } from '@supabase/ssr'
 
 export const load: LayoutServerLoad = async ({ locals: { safeGetSession }, fetch, depends, data }) => {
@@ -33,10 +32,4 @@ export const load: LayoutServerLoad = async ({ locals: { safeGetSession }, fetch
   const { data: { session }, } = await supabase.auth.getSession()
 
   return { supabase, session }
-
-  // return {
-  //   session,
-  //   user,
-  //   cookies: cookies.getAll(),
-  // }
 }

@@ -3,41 +3,29 @@ import { createServerClient } from '@supabase/ssr'
 import type { Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
-    console.log("Hooks executing...")
+  console.log("Creating supabase client...")
 
-    // create supabase server client
-    event.locals.supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
-      cookies: {
-        getAll() {
-            return event.cookies.getAll()
-        },
-        setAll(cookiesToSet) {
-            cookiesToSet.forEach(({ name, value, options }) => 
-              event.cookies.set(name, value, { ...options, path: '/' })
-            )
-        },
+  // create supabase server client
+  const supabaseClient = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+    cookies: {
+      getAll() {
+          return event.cookies.getAll()
       },
-    })
+      setAll(cookiesToSet) {
+          cookiesToSet.forEach(({ name, value, options }) => 
+            event.cookies.set(name, value, { ...options, path: '/' })
+          )
+      },
+    },
+    cookieEncoding: 'base64url'
+  })
 
-  /**
-   * Unlike `supabase.auth.getSession()`, which returns the session _without_
-   * validating the JWT, this function also calls `getUser()` to validate the
-   * JWT before returning the session.
-   */
-  event.locals.safeGetSession = async () => {
-    const { data: { session }, } = await event.locals.supabase.auth.getSession()
-    if (!session) {
-      return { session: null, user: null }
-    }
-
-    const { data: { user }, error, } = await event.locals.supabase.auth.getUser()
-    if (error) {
-      // JWT validation has failed
-      console.log("Unable to get active user, returning null objects.")
-      return { session: null, user: null }
-    }
-
-    return { session, user }
+  // check for user object
+  const { data: { user }, error, } = await supabaseClient.auth.getUser()
+  if (error) {
+    // JWT validation has failed
+    console.log("Unable to get active user, should redirect to login...")
+    // return { session: null, user: null }
   }
 
   return resolve(event, {
