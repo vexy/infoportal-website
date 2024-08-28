@@ -3,7 +3,7 @@ export interface Question {
     id: number,
 
     title: string,
-    options: [QuestionOptions]
+    options: QuestionOptions[]
 
     isAnswered: boolean,
     totalVoters: number,
@@ -13,7 +13,6 @@ export interface Question {
 
 // Represents a voting option of a question
 export interface QuestionOptions {
-    id: number,
     title: string
     votersCount: number
 }

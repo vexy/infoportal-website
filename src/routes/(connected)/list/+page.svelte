@@ -14,10 +14,6 @@
 
 <h1>Main list of questions will be displayed here</h1>
 
-<!-- <p>{ data }</p>
-<p>{ data.systemQuestions }</p>
-<p>{ data.systemQuestions[0] }</p> -->
-
 {#each questions as questionItem }
     <p>QuestionID: {questionItem.id}</p>
     <p>TITLE: {questionItem.title}</p>
