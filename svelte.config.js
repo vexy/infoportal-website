@@ -7,7 +7,12 @@ const config = {
 
 	kit: {
 		// use Vercel platform adapter
-		adapter: adapter()
+		adapter: adapter(),
+
+		// custom aliases
+		alias: {
+			$models: "src/models"
+		}
 	}
 };
 
