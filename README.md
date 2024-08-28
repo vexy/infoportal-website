@@ -6,6 +6,7 @@ Website is made using `SvelteKit` and `TypeScript`. It uses `node 20.x` as a run
 
 To get the website running locally, run:  
 ```bash
+$ npm install  # wait to complete
 $ npm run dev
 ```  
 
