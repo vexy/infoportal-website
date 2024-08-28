@@ -1,4 +1,4 @@
-import { SOME_SECRET, SUPABASE_URL } from "$env/static/private";
+// import { SOME_SECRET, SUPABASE_URL } from "$env/static/private";
 import { QuestionService } from '$lib/QuestionsService';
 import type { PageServerLoad } from './$types';
 
@@ -9,7 +9,7 @@ export const load = (async () => {
 
     return { 
         slugQuestion,
-        secret: SOME_SECRET,
-        url: SUPABASE_URL
+        // secret: SOME_SECRET,
+        // url: SUPABASE_URL
      };
 }) satisfies PageServerLoad;
