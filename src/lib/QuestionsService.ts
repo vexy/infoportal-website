@@ -23,7 +23,12 @@ export class QuestionService {
 
     async loadAllQuestions(): Promise<Question[]> {
         //TODO: Load from database later
-        return Promise.resolve([dummyQuestion, dummyQuestion2]);
+        return Promise.resolve([dummyQuestion, dummyQuestion2, slugQuestion]);
+    }
+
+    async loadQuestion(id: number): Promise<Question> {
+        //TODO: Query the database with given id
+        return Promise.resolve(slugQuestion);
     }
 }
 
@@ -60,5 +65,16 @@ const dummyQuestion2: Question = {
     isAnswered: false,
 
     totalVoters: 65,
+    dateAdded: new Date()
+}
+
+const slugQuestion: Question = {
+    id: 4,
+    title: "This question has been pulled from standalone method",
+    
+    options: [dummyOption1, dummyOption2, dummyOption3],
+    isAnswered: false,
+
+    totalVoters: 11,
     dateAdded: new Date()
 }

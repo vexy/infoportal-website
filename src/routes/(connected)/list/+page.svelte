@@ -1,5 +1,5 @@
 <script lang="ts">
-    import type Question from "$models/Question";
+    import type { Question } from "$models/Question";
     import { onMount } from "svelte";
 
     // list of questions will be returned here

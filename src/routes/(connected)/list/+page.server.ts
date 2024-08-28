@@ -5,7 +5,5 @@ export const load = (async () => {
     const qs = new QuestionService();
     const allQuestions = await qs.loadAllQuestions();
 
-    return {
-        allQuestions
-    };
+    return { allQuestions };
 }) satisfies PageServerLoad;
