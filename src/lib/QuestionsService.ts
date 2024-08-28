@@ -1,4 +1,4 @@
-import { Question, type QuestionOptions } from "$models/Question";
+import type { Question, QuestionOptions } from "$models/Question";
 
 export class QuestionService {
     readonly systemQuestions: Question[]
