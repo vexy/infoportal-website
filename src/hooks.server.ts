@@ -1,12 +1,12 @@
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from '$env/static/private'
 import { createServerClient } from '@supabase/ssr'
-import type { Handle } from '@sveltejs/kit'
+import { redirect, type Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
-  console.log("Creating supabase client...")
+  console.debug("Creating supabase client...");
 
   // create supabase server client
-  const supabaseClient = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
+  event.locals.supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     cookies: {
       getAll() {
           return event.cookies.getAll()
@@ -21,11 +21,12 @@ export const handle: Handle = async ({ event, resolve }) => {
   })
 
   // check for user object
-  const { data: { user }, error, } = await supabaseClient.auth.getUser()
-  if (error) {
+  console.debug("Checking for active user...");
+  const { data: { user }, error, } = await event.locals.supabase.auth.getUser()
+  if (error || !user) {
     // JWT validation has failed
-    console.log("Unable to get active user, should redirect to login...")
-    // return { session: null, user: null }
+    console.error("Error occured while getting user identity...")
+    // return redirect(303, "/");
   }
 
   return resolve(event, {

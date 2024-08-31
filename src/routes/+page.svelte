@@ -1,35 +1,34 @@
 <script lang="ts">
-    import { invalidateAll } from "$app/navigation";
+    import { goto } from "$app/navigation";
     import { onMount } from "svelte";
 
     export let data;
-
-    $: _supaAuth = data.supabase.auth
+    $: _supaAuth = data.supabase.auth;
 
     async function handleGoogleLogin(response) {
-        const { credential } = response
-        console.log(credential);
+        const { credential } = response;
+        console.log("GoogleSignIn success, redirecting to supabase...");
 
-        const { data, error} = await _supaAuth.signInWithIdToken({
+        const { data, error} = await _supaAuth.signInWithOAuth({
             provider: 'google',
-            token: credential
-        });
+            options: {
+                redirectTo: 'http://localhost:5173/auth'    //TODO: Read from env
+            }
+        })
 
         // check for errors
         if(error) {
-            //TODO: Show popup later
-        }
+            console.error("Unable to login user with Google");
+            console.error(error);
 
-        // invalidate the page in any case and let hooks do the rest
-        invalidateAll();
+            //TODO: Show error dialog...
+        }
     }
 
     onMount(async () => {
-        console.log(data);
-
         // initialize google client API
         google.accounts.id.initialize({
-          client_id: "677261584173-ba71c9183sfe3fs2jatkl5pn0hnshig8.apps.googleusercontent.com",
+          client_id: "1059954469702-61ae876935rnl1bqalvr239q3gj6skpa.apps.googleusercontent.com",
           callback: handleGoogleLogin
         });
 
@@ -38,7 +37,7 @@
           document.getElementById("googleSignInButton"),
             {
                 theme: "outline",
-                size: "large",
+                size: "large",                
             }
         );
 

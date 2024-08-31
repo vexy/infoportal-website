@@ -3,6 +3,7 @@ import { createBrowserClient, createServerClient, isBrowser } from '@supabase/ss
 import type { LayoutLoad } from './$types';
 
 export const load: LayoutLoad = async ({ data, depends, fetch }) => {
+  console.debug("Layout.ts - creating supabase object for +page DOM");
   /**
    * Declare a dependency so the layout can be invalidated, for example, on
    * session refresh.
