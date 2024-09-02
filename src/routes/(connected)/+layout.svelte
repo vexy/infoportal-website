@@ -9,3 +9,4 @@
 
 <footer>This is where footer would be</footer>
 
+<!-- ADD STYLING LATER -->

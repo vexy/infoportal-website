@@ -10,7 +10,7 @@ export const GET: RequestHandler = async ({ locals: { supabase }, url }) => {
 
         // check for errors
         if(!error) {
-            console.info("Exchanged code for session object.");
+            console.info("GET /Auth route; Exchanged code for session object.");
             redirect(302, "/list");
         } else {
             //TODO: Redirect to an error page

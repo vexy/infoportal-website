@@ -1,7 +1,10 @@
-import { SUPABASE_ANON_KEY, SUPABASE_URL } from '$env/static/private'
-import type { LayoutServerLoad } from './$types'
-import { createBrowserClient, createServerClient, isBrowser } from '@supabase/ssr'
+import type { LayoutServerLoad } from './$types';
 
-export const load: LayoutServerLoad = async ({ fetch, depends, event }) => {
-  console.log("Layout for (connected) routes...");
+export const load: LayoutServerLoad = async ({ cookies, depends }) => {
+    console.debug("Layout.server");
+    depends('supabase:auth');
+
+    return {
+        cookies: cookies.getAll(),
+    }
 }

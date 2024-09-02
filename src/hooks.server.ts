@@ -3,7 +3,7 @@ import { createServerClient } from '@supabase/ssr'
 import { redirect, type Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
-  console.debug("Creating supabase client...");
+  console.debug("Initializing supabase client in locals...");
 
   // create supabase server client
   event.locals.supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
@@ -19,15 +19,6 @@ export const handle: Handle = async ({ event, resolve }) => {
     },
     cookieEncoding: 'base64url'
   })
-
-  // check for user object
-  console.debug("Checking for active user...");
-  const { data: { user }, error, } = await event.locals.supabase.auth.getUser()
-  if (error || !user) {
-    // JWT validation has failed
-    console.error("Error occured while getting user identity...")
-    // return redirect(303, "/");
-  }
 
   return resolve(event, {
     filterSerializedResponseHeaders(name) {
