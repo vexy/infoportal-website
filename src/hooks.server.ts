@@ -1,6 +1,6 @@
 import { SUPABASE_URL, SUPABASE_ANON_KEY } from '$env/static/private'
 import { createServerClient } from '@supabase/ssr'
-import { redirect, type Handle } from '@sveltejs/kit'
+import { type Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
   console.debug("Initializing supabase client in locals...");

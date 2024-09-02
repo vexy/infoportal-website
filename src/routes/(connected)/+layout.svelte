@@ -1,12 +1,31 @@
-<header>
-    <a href="/list">List</a>
-    <a href="/question/6">Some question</a>
-    <a href="/question/new">New question</a>
-    <a href="/stats">Stats</a>
-</header>
+<script lang="ts">
+    import type { LayoutData } from './$types';
+    
+    export let data: LayoutData;
+</script>
 
-<slot />
+<main>
+    <nav>
+        <a href="/list">Инфопортал</a>
+        <a href="/question/new">Ново питање</a>
+        <a href="/stats">Статистика</a>
+    </nav>
 
-<footer>This is where footer would be</footer>
+    <slot />
 
-<!-- ADD STYLING LATER -->
+    <footer>
+        <p>This is footer area</p>
+    </footer>
+</main>
+
+<style>
+    main {
+        height: 100vh;
+        overflow: auto;
+
+        display: flex;
+        flex-direction: column;
+
+        background-color: beige;
+    }
+</style>
