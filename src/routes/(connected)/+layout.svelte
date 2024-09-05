@@ -1,8 +1,8 @@
-<script lang="ts">
-    import type { LayoutData } from './$types';
-    
-    export let data: LayoutData;
-</script>
+<header>
+    <a href="/list">List</a>
+    <a href="/question/new">New question</a>
+    <a href="/stats">Stats</a>
+</header>
 
 <main>
     <nav>

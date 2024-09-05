@@ -51,7 +51,7 @@ const dummyQuestion: Question = {
 
     title: "This is dummy question title",
     options: [dummyOption1, dummyOption2, dummyOption3],
-    isAnswered: false,
+    isAnswered: true,
 
     totalVoters: 10,
     dateAdded: new Date()
