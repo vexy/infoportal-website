@@ -73,8 +73,8 @@ const slugQuestion: Question = {
     title: "This question has been pulled from standalone method",
     
     options: [dummyOption1, dummyOption2, dummyOption3],
-    isAnswered: false,
+    isAnswered: true,
 
-    totalVoters: 11,
+    totalVoters: 21,
     dateAdded: new Date()
 }

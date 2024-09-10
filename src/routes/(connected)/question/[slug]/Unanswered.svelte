@@ -1,44 +1,35 @@
 <script lang="ts">
     import type { Question } from "$models/Question";
-    import Answered from "./Answered.svelte";
-    import Unanswered from "./Unanswered.svelte";
-    export let data;
+    import Header from "./(components)/Header.svelte";
 
+    export let data;
     const aQuestion = data.slugQuestion;
+    
+    const options = aQuestion.options;
+
+    //get array of `options`->keys
+    //options.keys() iterator does not work in this case
+    let optionsIterator: [number] = [0];
+    for (let i = 1; i < options.length; i++) {
+        optionsIterator.push(i);
+    }
+
+    let selectedKey = 0;
+    
+    const selectOption = (key: number) => {
+        selectedKey = key;
+    }
 </script>
+
+
 
 <a href='/list' class='survey'>&lt;- Nazad</a>
 
+
+
 <div class='survey flex flex-column'>
-    <!-- header -->
-    <div class='header flex flex-column'>
-        <!-- date & votes -->
-        <div class='flex flex-main-space-between font-size-2' style='color: var(--grey)'>
-            <!-- date -->
-            <div>
-                {aQuestion.dateAdded}
-            </div>
-            <!-- votes -->
-            <div>
-                { aQuestion.totalVoters } votes
-            </div>
-        </div>
 
-        <!-- title -->
-        <h2 class='font-size-4'>{aQuestion.title}</h2>
-
-        <!-- location -->
-        <div class='location flex font-size-2'>
-            <svg xmlns="http://www.w3.org/2000/svg" width="8px" viewBox="0 0 298.67 448">
-                <g>
-                    <path d="M149.33,0C66.86,0,0,66.86,0,149.33s149.33,298.67,149.33,298.67c0,0,149.33-216.19,149.33-298.67S231.81,0,149.33,0ZM149.33,213.33c-35.35,0-64-28.65-64-64s28.65-64,64-64,64,28.65,64,64-28.65,64-64,64Z"/>
-                </g>
-            </svg>
-            <div>
-                Srbija
-            </div>
-        </div>
-    </div>
+    <Header survey={aQuestion}/>
 
     <!-- questions -->
     <!-- following line is prep for `survey` structure -->
@@ -63,6 +54,12 @@
     </button>
 </div>
 
+<p> ID: { aQuestion.id } </p>
+<p> IsAnswered: { aQuestion.isAnswered } </p>
+
+<p>URL: { data.url }</p>
+<p>SHASH_HASH { data.secret }</p>
+
 
 <style>
     .survey{
@@ -73,16 +70,6 @@
         box-shadow: 0px 1px 10px 0px rgba(0, 0, 0, 30%);
         border-radius:6px;
         gap: var(--size-5);
-    }
-
-    .header{
-        gap:var(--size-2);
-    }
-
-    .location{
-        color:var(--secondary);
-        fill:var(--secondary);
-        gap:var(--size-0);
     }
 
     .question{

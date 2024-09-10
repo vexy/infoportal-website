@@ -9,7 +9,7 @@
     --primary: #104071;
     --primary-soft: #E7F3FF;
     --secondary: #CAA534;
-    --positive: #34CA55;
+    --positive: #37CA55;
 
     --size-0: 5.25px;
     --size-1: 8.5px;
@@ -17,6 +17,7 @@
     --size-3: 22.25px;
     --size-4: 36px;
     --size-5: 58.25px;
+    --size-6: 94.25px;
 }
 
 .font-size-0{
@@ -106,6 +107,12 @@ a.nostyle:visited {
     -webkit-box-pack: center;
     -ms-flex-pack: center;
     justify-content: center;
+}
+
+.flex-main-end{
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: end;
 }
 
 .flex-cross-center {

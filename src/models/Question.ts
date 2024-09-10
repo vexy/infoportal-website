@@ -15,4 +15,7 @@ export interface Question {
 export interface QuestionOptions {
     title: string
     votersCount: number
+
+    //optional
+    votersPercentage?: number
 }

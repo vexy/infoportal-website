@@ -1,7 +1,5 @@
 <script>
     export let questionItem;
-
-    console.log(questionItem);
 </script>
 
 <a href={`/question/${questionItem.id}`} class:answered={questionItem.isAnswered} class="nostyle flex flex-column">

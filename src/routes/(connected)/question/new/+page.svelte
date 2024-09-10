@@ -43,6 +43,18 @@
                         </button>
                     </div>
                 {/each}
+
+                <!-- Mandatory options -->
+                <!-- Question Unclear -->
+                <div class="option mandatory flex flex-main-space-between flex-cross-center">
+                    <div>Question is unclear</div>
+                    <div class="font-size-2">Required</div>
+                </div>
+                <!-- Inadequate options -->
+                <div class="option mandatory flex flex-main-space-between flex-cross-center">
+                    <div>Options Inadequate</div>
+                    <div class="font-size-2">Required</div>
+                </div>
             </div>
 
             <!-- Add Option -->
@@ -133,6 +145,12 @@
     .option{
         box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 10%);
         border-radius:4px;
+    }
+    .option.mandatory{
+        background-color: var(--background-secondary);
+        box-shadow: 0px 1px 10px 1px rgba(0, 0, 0, 5%);
+        color: var(--grey);
+        position:relative;
     }
     .option>*{
         padding: calc(var(--size-2) - 2px) var(--size-2);
