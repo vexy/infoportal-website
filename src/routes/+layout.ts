@@ -22,11 +22,11 @@ export const load: LayoutLoad = async ({ data, fetch }) => {
         },
       })
   
+  // extracting and passing only supabase auth instance
   const supaAuth = supabase.auth;
-  const redirectURL = 'http://localhost:5173/auth' //TODO: Read from .env
 
   return { 
     supaAuth: supaAuth,
-    redirectURL: redirectURL
+    redirectURL: data.redirect_url
   }
 };

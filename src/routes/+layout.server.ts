@@ -1,4 +1,4 @@
-import { SUPABASE_ANON_KEY, SUPABASE_URL } from '$env/static/private'
+import { SUPABASE_ANON_KEY, SUPABASE_URL, REDIRECT_URL } from '$env/static/private'
 import type { LayoutServerLoad } from './$types';
 
 export const load: LayoutServerLoad = async ({ cookies }) => {
@@ -7,6 +7,7 @@ export const load: LayoutServerLoad = async ({ cookies }) => {
     return {
         cookies: cookies.getAll(),
         anon_key: SUPABASE_ANON_KEY,
-        url: SUPABASE_URL
+        url: SUPABASE_URL,
+        redirect_url: REDIRECT_URL
     }
 }
