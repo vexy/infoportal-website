@@ -9,8 +9,6 @@ export const load = (async ({ locals : { supabase }}) => {
 
     if(error || !data) {
         // just return to login page
-        console.debug("User object: ", data.user);
-        console.error("Error object: ", error);
         console.error("Error during getting user. Redirecting to root.");
         redirect(301, '/');
     }

@@ -29,7 +29,7 @@
     onMount(async () => {
         // initialize google client API
         google.accounts.id.initialize({
-          client_id: "1059954469702-61ae876935rnl1bqalvr239q3gj6skpa.apps.googleusercontent.com",
+          client_id: "618627880154-3v3ojejgm2que1eijc2msq8jrvbcqpsm.apps.googleusercontent.com",
           callback: handleGoogleLogin
         });
 
