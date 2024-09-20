@@ -1,29 +1,47 @@
 import type { Question, QuestionOptions } from "$models/Question";
+import type { SupabaseClient } from "@supabase/supabase-js";
 
 export class QuestionService {
     readonly systemQuestions: Question[]
+    private supaInstance: SupabaseClient
 
-    constructor() {
+    constructor(supabaseInstance: SupabaseClient) {
         //setup the needs here
         this.systemQuestions = [];
+        this.supaInstance = supabaseInstance;
     }
 
-    addQuestion(title: string, options: [QuestionOptions]) {
-        const newQuestion: Question = new Question();
+    async addQuestion(title: string, options: string[]): Promise<boolean> {
+        //TODO: perform input checks
+        const { error } = await this.supaInstance.from('questions')
+            .insert({
+                title: title,
+                question_options: options
+            })
         
-        newQuestion.id = Math.random();
-        newQuestion.title = title
-        newQuestion.options = options;
-        newQuestion.isAnswered = false;
-        newQuestion.dateAdded = new Date();
+        // check for errors
+        if(error) { 
+            console.error("Error during inserting new question: ");
+            console.error(error);
+            return Promise.reject();
+        }
 
-        //TODO: save to database later
-        this.systemQuestions.push(newQuestion);
+        console.debug("Adding questions success...");
+        return Promise.resolve(true);
     }
 
-    async loadAllQuestions(): Promise<Question[]> {
-        //TODO: Load from database later
-        return Promise.resolve([dummyQuestion, dummyQuestion2, slugQuestion]);
+    async fetchAllQuestions(): Promise<Question[]> {
+        const { data, error } = await this.supaInstance
+            .from('questions')
+            .select("*")
+
+        // check for errors
+        if(error) {
+            return Promise.reject(error);
+        }
+
+        // parse the data and return
+        return Promise.resolve(data);
     }
 
     async loadQuestion(id: number): Promise<Question> {
