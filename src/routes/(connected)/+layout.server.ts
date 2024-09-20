@@ -1,5 +1,6 @@
 import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
+import { QuestionService } from '$lib/QuestionsService';
 
 export const load = (async ({ locals : { supabase }}) => {
     console.log("/(connected)layout.server: checking user object...")
@@ -13,5 +14,8 @@ export const load = (async ({ locals : { supabase }}) => {
         redirect(301, '/');
     }
 
-    return { };
+    const qService = new QuestionService(supabase);
+    const allQuestions = await qService.fetchAllQuestions();
+
+    return { all_questions: allQuestions };
 }) satisfies LayoutServerLoad;

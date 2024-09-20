@@ -5,7 +5,7 @@
     // list of questions will be returned here
     export let data;
 
-    const questions = data.allQuestions;
+    const questions = data.all_questions;
 
     onMount(async () => {
         console.log(data);
@@ -21,22 +21,23 @@
         <td>
             <p>
                 <img src="/users.svg" alt="users" height="20px" width="20px" />
-                { questionItem.totalVoters }
+                <!-- { questionItem.totalVoters } -->
+                  <i># of total voters</i>
             </p>
         </td>
         <td>
             <a href='/question/{questionItem.id}'>{questionItem.title}</a>
         </td>
         <td>
-            <p>Date added: { questionItem.dateAdded.toLocaleDateString() }</p>
+            <p>Date added: { questionItem.created_at.toDateString }</p>
         </td>
-    </tr>
 
-        <!-- <ul>
-            {#each questionItem.options as voteOption }
-                <li>{voteOption.title}</li>
-                <li>{voteOption.votersCount}</li>
+        <ul>
+            {#each questionItem.question_options as voteOption }
+                <li>Option: { voteOption }</li>
+                <!-- <li>{voteOption.votersCount}</li> -->
             {/each}
-        </ul> -->
+        </ul>
+    </tr>
     {/each}
 </table>

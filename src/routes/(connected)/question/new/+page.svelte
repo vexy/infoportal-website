@@ -1,6 +1,14 @@
 <script lang="ts">
     let question_title: string = "";
     let title_options: string[] = ['','','','',''];
+
+    export let data;
+
+    async function addNewQuestion() {
+        console.log("New question will be added here");
+        console.debug("Data object is: ");
+        console.debug(data);
+    }
 </script>
 
 <h1>Поставите питање</h1>
@@ -17,7 +25,7 @@
     {/each}
 </options_container>
 
-<button>Пошаљи</button>
+<button on:click={addNewQuestion}>Пошаљи</button>
 
 <style>
     h1 {
