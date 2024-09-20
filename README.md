@@ -16,7 +16,7 @@ $ npm run build
 ```
 
 ### Contribution
-Want to contribute? Check out project pages.
+Want to contribute? Check out [project pages](https://github.com/users/vexy/projects/2).
 
 ### Licence
 Licensed under GPL-3.0 license.  

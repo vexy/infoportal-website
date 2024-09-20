@@ -18,5 +18,5 @@
 <p> { aQuestion.isAnswered } </p>
 <p> TOTAL VOTERS: { aQuestion.totalVoters } </p>
 
-<p>URL: { data.url }</p>
-<p>SHASH_HASH { data.secret }</p>
+<!-- <p>URL: { data.url }</p>
+<p>SHASH_HASH { data.secret }</p> -->
