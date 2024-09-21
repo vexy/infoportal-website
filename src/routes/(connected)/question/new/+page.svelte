@@ -1,40 +1,55 @@
 <script lang="ts">
-    let question_title: string = "";
+    // let question_title: string = "";
     let title_options: string[] = ['','','','',''];
 
-    export let data;
-
-    async function addNewQuestion() {
-        console.log("New question will be added here");
-        console.debug("Data object is: ");
-        console.debug(data);
-    }
+    export let form;
 </script>
 
 <h1>Поставите питање</h1>
 
-<input type="text" placeholder="Унесите наслов Вашег питања" value={question_title}>
+<form method="POST" action="?/postQuestion">
+    <input name="title" type="text" placeholder="Унесите наслов питања">
+    {#if form?.missingTitle }
+        <p>Наслов питања је обавезан...</p>
+    {/if}
 
-<options_container>
-    <h3>Понуђени одговори:</h3>
-    {#each title_options as _, index}    
-        <div>
-            <input type="text" placeholder="Одговор {index + 1}" value={title_options[index]}/>
-            <img src='/delete-icon.svg' alt='delete_icon' width="20px" height="25px"/>
-        </div>
-    {/each}
-</options_container>
+    <options_container>
+        <h3>Понуђени одговори:</h3>
+        {#each title_options as _, index}    
+            <div>
+                <input name={`option_${index}`} type="text" placeholder="Одговор {index + 1}" value={title_options[index]}/>
+                {#if form?.missingOption && index < 2}
+                    <p>Обавезно поље...</p>
+                {/if}
+                <img src='/delete-icon.svg' alt='delete_icon' width="20px" height="25px"/>
+            </div>
+        {/each}
+    </options_container>
 
-<button on:click={addNewQuestion}>Пошаљи</button>
+    <button>Пошаљи</button>
+</form>
 
 <style>
     h1 {
         text-align: center;
     }
 
-    options_container {
+    form {
+        width: 100%;
         display: flex;
         flex-direction: column;
+
+        align-items: center;
+    }
+
+    p {
+        font-style: italic;
+        font-size: 0.85rem;
+        color: rgb(200, 7, 7);
+    }
+
+    options_container {
+        min-width: 320px;
         gap: 10px;
         padding-top: 0.5rem;
     }
@@ -42,9 +57,14 @@
     options_container>div {
         display: flex;
         flex-direction: row;
-        
         justify-content: space-around;
-        align-items: center;
-        /* max-height: 50px; */
+    }
+
+    options_container>div>input {
+        min-width: 190px;
+    }
+
+    button {
+        margin: 1.25rem;
     }
 </style>
