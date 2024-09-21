@@ -27,6 +27,10 @@
     </options_container>
 
     <button>Пошаљи</button>
+
+    {#if form?.success}
+        <p>NEW QUESTION ADDED</p>
+    {/if}
 </form>
 
 <style>

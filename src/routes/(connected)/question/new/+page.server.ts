@@ -7,7 +7,7 @@ export const actions = {
         const formData = await request.formData();
         
         // check for title
-        const title = formData.get('title');
+        const title = formData.get('title')
         if(!title) {
             return fail(400, { missingTitle: true })
         }
@@ -21,12 +21,32 @@ export const actions = {
         }
 
         // cycle through all options and see what is available
+        const questionOptions: string[] = [];
         for(let i = 0; i < 5; i++) {
-            const anyOption = formData.get(`option_${i}`);
-            console.debug(`Option ${i}: ${anyOption}`)
+            const anOption = formData.get(`option_${i}`);
+            if(anOption) {
+                // console.debug(`Option ${i}: ${anyOption}`)
+                questionOptions.push(anOption.toString());
+            }
         }
 
-        console.debug("Creating question service....")
+        console.debug("Creating question through question service....")
         const q_service = new QuestionService(supabase);
+        //
+        try {
+            await q_service.addQuestion(title.toString(), questionOptions);
+            // return success
+            return { success: true }
+        } catch (err) {
+            console.error("Error during adding new question: ")
+            console.error(err)
+
+            //TODO: add more details
+            return fail(403, {
+                success: false,
+                missingTitle: false, 
+                missingOption: false
+            })
+        }
     }
 }

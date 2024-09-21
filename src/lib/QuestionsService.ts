@@ -12,21 +12,27 @@ export class QuestionService {
     }
 
     async addQuestion(title: string, options: string[]): Promise<boolean> {
-        //TODO: perform input checks
-        const { error } = await this.supaInstance.from('questions')
+        const { data, error } = await this.supaInstance
+            .from('questions')
             .insert({
                 title: title,
                 question_options: options
             })
+            .select()
         
         // check for errors
-        if(error) { 
-            console.error("Error during inserting new question: ");
-            console.error(error);
-            return Promise.reject();
-        }
+        if(error) { return Promise.reject(error); }
+        
+        // then add initial score to scores table
+        const questionID = data[0].id;
+        const { err } = await this.supaInstance
+            .from('scores')
+            .insert({
+                question_id: questionID,
+            });
 
-        console.debug("Adding questions success...");
+        if(err) { return Promise.reject(err); }
+        //
         return Promise.resolve(true);
     }
 
@@ -44,8 +50,7 @@ export class QuestionService {
         return Promise.resolve(data);
     }
 
-    async loadQuestion(id: number): Promise<Question> {
-        //TODO: Query the database with given id
+    async loadQuestion(questionID: number): Promise<Question> {
         return Promise.resolve(slugQuestion);
     }
 }
