@@ -30,7 +30,7 @@ export const actions = {
             }
         }
 
-        console.debug("Creating question through question service....")
+        console.info("Creating question through question service....")
         const q_service = new QuestionService(supabase);
         //
         try {
