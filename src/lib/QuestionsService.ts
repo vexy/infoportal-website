@@ -1,4 +1,4 @@
-import type { Question, QuestionOptions } from "$models/Question";
+import type { Question, QuestionMeta } from "$models/Models";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 export class QuestionService {
@@ -59,7 +59,13 @@ export class QuestionService {
     async fetchAllQuestions(): Promise<Question[]> {
         const { data, error } = await this.supaInstance
             .from(this.QUESTIONS_TABLE)
-            .select("*")
+            .select(`
+                id, title,
+                created_at,
+                voters_count:voters (
+                    question_id
+                ).count(),
+            `)
 
         // check for errors
         if(error) {
@@ -70,8 +76,11 @@ export class QuestionService {
         return Promise.resolve(data);
     }
 
-    async loadQuestion(questionID: number): Promise<Question> {
-        return Promise.resolve(slugQuestion);
+    async loadQuestion(questionID: number): Promise<QuestionMeta> {
+        const { data, error } = await this.supaInstance
+            .from('questions')
+            .select()
+            .eq('id', questionID);
     }
 }
 

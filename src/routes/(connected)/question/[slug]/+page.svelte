@@ -1,22 +1,20 @@
 <script lang="ts">
-    import type { Question } from "$models/Question";
-    export let data;
+    import type { Question } from "$models/Models.js";
 
+    export let data;
     const aQuestion = data.slugQuestion;
 </script>
 
 <h1> { aQuestion.title } </h1>
 
-<p> { aQuestion.id } </p>
-
-<ul>
-    {#each aQuestion.options as voteOption }
-        <li>({voteOption.votersCount}) | {voteOption.title}</li>
-    {/each}
-</ul>
-
-<p> { aQuestion.isAnswered } </p>
-<p> TOTAL VOTERS: { aQuestion.totalVoters } </p>
-
-<!-- <p>URL: { data.url }</p>
-<p>SHASH_HASH { data.secret }</p> -->
+ <!-- check what layout to use -->
+{#if data.hasAnswered}
+    <p>Comming soon !!</p>
+    <p> TOTAL VOTERS: { aQuestion.totalVoters } </p>
+{:else}
+    <ul>
+        {#each aQuestion.options as voteOption }
+            <li>({voteOption.votersCount}) | {voteOption.title}</li>
+        {/each}
+    </ul>
+{/if}
