@@ -5,6 +5,10 @@ export class QuestionService {
     readonly systemQuestions: Question[]
     private supaInstance: SupabaseClient
 
+    private QUESTIONS_TABLE = 'questions'
+    private SCORES_TABLE = 'scores'
+    private VOTERS_TABLE = 'voters'
+
     constructor(supabaseInstance: SupabaseClient) {
         //setup the needs here
         this.systemQuestions = [];
@@ -13,7 +17,7 @@ export class QuestionService {
 
     async addQuestion(title: string, options: string[]): Promise<boolean> {
         const { data, error } = await this.supaInstance
-            .from('questions')
+            .from(this.QUESTIONS_TABLE)
             .insert({
                 title: title,
                 question_options: options
@@ -25,20 +29,36 @@ export class QuestionService {
         
         // then add initial score to scores table
         const questionID = data[0].id;
-        const { err } = await this.supaInstance
-            .from('scores')
+        const response = await this.supaInstance
+            .from(this.SCORES_TABLE)
             .insert({
                 question_id: questionID,
             });
 
-        if(err) { return Promise.reject(err); }
-        //
+        // finally, check if score addition resulted in error
+        if(response.error) {
+            console.error("Adding default scores failed. Manually deleting associated question...")
+            
+            // NOTE: as of now, Supabase does NOT support SQL transactions
+            // in case of failure here, we should delete previous insertion, as we might end up with ghost data
+            const deleteResponse = await this.supaInstance
+                .from(this.QUESTIONS_TABLE)
+                .delete()
+                .eq('id', questionID)
+            
+            if(deleteResponse.error) { return Promise.reject(deleteResponse.error); }
+
+            console.debug("After failing to add scores, associated question was removed successfully...")
+            return Promise.reject(response.error);
+        }
+
+        // return positive outcome
         return Promise.resolve(true);
     }
 
     async fetchAllQuestions(): Promise<Question[]> {
         const { data, error } = await this.supaInstance
-            .from('questions')
+            .from(this.QUESTIONS_TABLE)
             .select("*")
 
         // check for errors
