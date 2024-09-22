@@ -3,12 +3,12 @@ export interface Question {
     id: number,
 
     title: string,
-    options: QuestionOptions[]
+    question_options: string[]
 
-    isAnswered: boolean,
-    totalVoters: number,
+    // isAnswered: boolean,
+    // totalVoters: number,
 
-    dateAdded: Date
+    created_at: Date
 }
 
 // Represents a voting option of a question
