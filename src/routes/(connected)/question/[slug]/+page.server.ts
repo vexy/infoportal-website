@@ -11,6 +11,8 @@ export const load = (async ({ locals: {supabase}, params }) => {
     const q_service = new QuestionService(supabase);
     const slugQuestion = await q_service.loadQuestion(questionID)
 
+    console.debug(slugQuestion);
+
     return { 
         slugQuestion,
         hasAnswered: false

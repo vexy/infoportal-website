@@ -80,7 +80,18 @@ export class QuestionService {
         const { data, error } = await this.supaInstance
             .from('questions')
             .select()
-            .eq('id', questionID);
+            .eq('id', questionID)
+            .maybeSingle();
+        
+        // check for errors
+        if(error) { return Promise.reject(error) }
+
+        // return the success
+        return Promise.resolve(data);
+    }
+
+    async hasAnsweredQuestion(userHash: string, questionID: number) {
+        
     }
 }
 
