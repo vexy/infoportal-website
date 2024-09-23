@@ -4,20 +4,34 @@
     // pageload export
     export let data;
 
-    const aQuestion = data.slugQuestion;
+    const questionMeta = data.meta;
+    const questionScores = data.scores;
+
     let showAdditionals = false;
 </script>
 
-<h1> { aQuestion.title } </h1>
+<h1> { questionMeta.title } </h1>
 
  <!-- check what layout to use -->
 {#if data.hasAnswered}
-    <p>Comming soon !!</p>
-    <p> TOTAL VOTERS: { aQuestion.totalVoters } </p>
+<div>
+    {#each questionMeta.question_options as voteOption, index }
+        <div>
+            <p>{voteOption} | ({questionScores[index]})</p>
+            <meter min="0" max="100" value={questionScores[index]} />
+        </div>
+    {/each}
+    <label for="none">Ништа од наведеног</label>
+    <label for="unclear">Питање није разумљиво</label>
+    <label for="inadequate">Не адекватно питање</label>
+    <!-- <div>
+        <meter min="0" max="100" value={questionScores[index]} />
+    </div> -->
+</div>
 {:else}
 <fieldset>
     <legend>Понуђени одговори</legend>
-    {#each aQuestion.question_options as voteOption, index }
+    {#each questionMeta.question_options as voteOption, index }
         <div>
             <input
                 id="option_{index}"

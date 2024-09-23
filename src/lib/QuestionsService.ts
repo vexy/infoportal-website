@@ -76,7 +76,7 @@ export class QuestionService {
         return Promise.resolve(data);
     }
 
-    async loadQuestion(questionID: number): Promise<QuestionMeta> {
+    async loadQuestionMeta(questionID: number): Promise<QuestionMeta> {
         const { data, error } = await this.supaInstance
             .from('questions')
             .select()
@@ -90,8 +90,17 @@ export class QuestionService {
         return Promise.resolve(data);
     }
 
-    async hasAnsweredQuestion(userHash: string, questionID: number) {
-        
+    async hasAnsweredQuestion(questionID: number): Promise<boolean> {
+        return Promise.resolve(true);
+    }
+
+    async loadQuestionScores(questionID: number): Promise<number[]> {
+        const retValues = []
+        for(let i=0; i < 5; i++) {
+            retValues.push(Math.floor(Math.random() * 100))
+        }
+
+        return Promise.resolve(retValues);
     }
 }
 

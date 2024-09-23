@@ -7,14 +7,25 @@ export const load = (async ({ locals: {supabase}, params }) => {
     const questionID = Number(params.slug);
     console.debug("QuestionID to load: ", questionID);
 
-    // Setup question service
-    const q_service = new QuestionService(supabase);
-    const slugQuestion = await q_service.loadQuestion(questionID)
+    // setup return values
+    let questionMeta = null
+    let questionScores = null
 
-    console.debug(slugQuestion);
+    // initialize question service
+    const q_service = new QuestionService(supabase);
+
+    // get question meta
+    questionMeta = await q_service.loadQuestionMeta(questionID)
+    
+    // check if user has answered this question
+    const hasAnsweredQuestion = await q_service.hasAnsweredQuestion(questionID)
+    if(hasAnsweredQuestion) {
+        questionScores = await q_service.loadQuestionScores(questionID)
+    }
 
     return { 
-        slugQuestion,
-        hasAnswered: false
-     };
+        meta: questionMeta,
+        scores: questionScores,
+        hasAnswered: hasAnsweredQuestion
+    };
 }) satisfies PageServerLoad;
