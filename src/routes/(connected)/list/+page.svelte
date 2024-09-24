@@ -1,15 +1,8 @@
 <script lang="ts">
-    import type { Question } from "$models/Models.js";
-    import { onMount } from "svelte";
-
     // list of questions will be returned here
     export let data;
 
-    const questions = data.all_questions;
-
-    onMount(async () => {
-        console.log(data);
-    })
+    const questions = data.allQuestions;
 </script>
 
 <!-- IMPROVE SEARCH BAR LATER -->

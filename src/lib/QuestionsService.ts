@@ -1,8 +1,7 @@
-import type { Question, QuestionMeta } from "$models/Models";
+import type { Question, QuestionMeta, QuestionSummary } from "$models/Models";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 export class QuestionService {
-    readonly systemQuestions: Question[]
     private supaInstance: SupabaseClient
 
     private QUESTIONS_TABLE = 'questions'
@@ -11,7 +10,6 @@ export class QuestionService {
 
     constructor(supabaseInstance: SupabaseClient) {
         //setup the needs here
-        this.systemQuestions = [];
         this.supaInstance = supabaseInstance;
     }
 
@@ -56,12 +54,11 @@ export class QuestionService {
         return Promise.resolve(true);
     }
 
-    async fetchAllQuestions(): Promise<Question[]> {
+    async fetchAllQuestions(): Promise<QuestionSummary[]> {
         const { data, error } = await this.supaInstance
             .from(this.QUESTIONS_TABLE)
             .select(`
-                id, title,
-                created_at,
+                id, title, created_at,
                 voters_count:voters (
                     question_id
                 ).count(),
@@ -72,13 +69,15 @@ export class QuestionService {
             return Promise.reject(error);
         }
 
+        console.debug(data);
+
         // parse the data and return
         return Promise.resolve(data);
     }
 
     async loadQuestionMeta(questionID: number): Promise<QuestionMeta> {
         const { data, error } = await this.supaInstance
-            .from('questions')
+            .from(this.QUESTIONS_TABLE)
             .select()
             .eq('id', questionID)
             .maybeSingle();
@@ -95,58 +94,18 @@ export class QuestionService {
     }
 
     async loadQuestionScores(questionID: number): Promise<number[]> {
-        const retValues = []
-        for(let i=0; i < 5; i++) {
-            retValues.push(Math.floor(Math.random() * 100))
-        }
+        const { data, error } = await this.supaInstance
+            .from(this.SCORES_TABLE)
+            .select('*')
+            .eq('question_id', questionID)
+            .maybeSingle()
+        
+        // check for errors
+        if(error) { return Promise.reject(error) }
 
-        return Promise.resolve(retValues);
+        console.debug("Question scores: ");
+        console.debug(data)
+
+        return Promise.resolve(data);
     }
-}
-
-const dummyOption1: QuestionOptions = {
-    title: "This is some option 1",
-    votersCount: 14,
-}
-
-const dummyOption2: QuestionOptions = {
-    title: "This is another option 2",
-    votersCount: 5,
-}
-const dummyOption3: QuestionOptions = {
-    title: "This is another option 3",
-    votersCount: 2,
-}
-
-const dummyQuestion: Question = {
-    id: 1,
-
-    title: "This is dummy question title",
-    options: [dummyOption1, dummyOption2, dummyOption3],
-    isAnswered: false,
-
-    totalVoters: 10,
-    dateAdded: new Date()
-}
-
-const dummyQuestion2: Question = {
-    id: 2,
-    title: "Dummy question title 2",
-    
-    options: [dummyOption1, dummyOption2, dummyOption3],
-    isAnswered: false,
-
-    totalVoters: 65,
-    dateAdded: new Date()
-}
-
-const slugQuestion: Question = {
-    id: 4,
-    title: "This question has been pulled from standalone method",
-    
-    options: [dummyOption1, dummyOption2, dummyOption3],
-    isAnswered: false,
-
-    totalVoters: 11,
-    dateAdded: new Date()
 }

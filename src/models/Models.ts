@@ -2,18 +2,22 @@
 // used on /list route
 export interface Question {
     id: number,
-
     title: string,
-    voters_count: number[]  //consequence of stupid Supabase !!
+    question_options: string[],
     created_at: Date,
+}
+
+export interface QuestionSummary extends Question {
+    voters_count: number[]  //consequence of stupid Supabase !!
 }
 
 // Represents extended question model
 // used on /question/* routes
-export interface QuestionMeta extends Question {
+export interface QuestionScores extends Question {
     //... inherited from Question
     //
-    question_options: string[],
-    scores: string[],
-    hasAnswered: boolean,
+    option_scores: number[];
+    none: number;
+    not_clear: number;
+    inadequate: number
 }
