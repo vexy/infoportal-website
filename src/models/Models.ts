@@ -1,23 +1,27 @@
-// Represents a Question model of the voting system
-// used on /list route
+// Represents base Question model
 export interface Question {
     id: number,
     title: string,
-    question_options: string[],
     created_at: Date,
 }
-
-export interface QuestionSummary extends Question {
+    
+export interface QuestionOverview extends Question {
     voters_count: number[]  //consequence of stupid Supabase !!
 }
 
+export interface QuestionMeta extends Question {
+    question_options: string[]
+}
+
 // Represents extended question model
-// used on /question/* routes
-export interface QuestionScores extends Question {
-    //... inherited from Question
+// Used on /question/* routes
+export interface QuestionScores extends QuestionMeta {
+    //... inherited from QuestionMeta
     //
     option_scores: number[];
     none: number;
     not_clear: number;
     inadequate: number
+    //
+    total_voters: number
 }

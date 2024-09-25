@@ -1,37 +1,55 @@
 <script lang="ts">
-    import type { QuestionMeta } from "$models/Models.js";
-
     // pageload export
     export let data;
 
-    const questionMeta = data.meta;
-    const questionScores = data.scores;
+    // $: meta = data.meta;
+    // $: scores = data.scores;
 
     let showAdditionals = false;
-</script>
 
-<h1> { questionMeta.title } </h1>
+    function getScorePercentage(optionID: number): number {
+        // divide option score with total amount of voters
+        return data.scores?.option_scores[optionID] / data.scores?.total_voters;
+    }
+
+    function getNonePercentage(): number {
+        return data.scores?.none / data.scores?.total_voters;
+    }
+    function getNotClearePercentage(): number {
+        return data.scores?.not_clear / data.scores?.total_voters;
+    }
+    function getInadequatePercentage(): number {
+        return data.scores?.inadequate / data.scores?.total_voters;
+    }
+</script>
 
  <!-- check what layout to use -->
 {#if data.hasAnswered}
+<h1> { data.scores?.title } </h1>
+
 <div>
-    {#each questionMeta.question_options as voteOption, index }
+    {#each data.scores?.question_options as voteOption, index }
         <div>
-            <p>{voteOption} | ({questionScores[index]})</p>
-            <meter min="0" max="100" value={questionScores[index]} />
+            <p>{voteOption} | ({data.scores?.option_scores[index]})</p>
+            <meter min="0" max="100" value={getScorePercentage[index]} />
         </div>
     {/each}
-    <label for="none">Ништа од наведеног</label>
-    <label for="unclear">Питање није разумљиво</label>
-    <label for="inadequate">Не адекватно питање</label>
-    <!-- <div>
-        <meter min="0" max="100" value={questionScores[index]} />
-    </div> -->
+    <div>
+        <p>Ништа од наведеног: {getNonePercentage()}</p>
+        <p>Питање није разумљиво: {getNotClearePercentage() }</p>
+        <p>Не адекватно питање: : {getInadequatePercentage() }</p>
+    </div>
+    <div>
+        <p>Total voters: { data.scores?.total_voters }</p>
+        <!-- <meter min="0" max="100" value={questionScores[index]} /> -->
+    </div>
 </div>
 {:else}
+<h1>{data.meta?.title }</h1>
+
 <fieldset>
     <legend>Понуђени одговори</legend>
-    {#each questionMeta.question_options as voteOption, index }
+    {#each data.meta?.question_options as voteOption, index }
         <div>
             <input
                 id="option_{index}"
@@ -58,15 +76,11 @@
         </fieldset>
     {/if}
 
-    <!-- <fieldset>
-        <legend>Dodatne opcije</legend>
-        <p>some additionals</p>
-    </fieldset> -->
     <button on:click={() => {showAdditionals = !showAdditionals}}>Додатне опције</button>
+    <button>Пошаљи одговор</button>
 </fieldset>
 {/if}
 
-<button>Пошаљи одговор</button>
 
 <style>
     fieldset {

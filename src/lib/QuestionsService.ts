@@ -1,4 +1,4 @@
-import type { Question, QuestionMeta, QuestionSummary } from "$models/Models";
+import type { QuestionOverview, QuestionMeta, QuestionScores } from "$models/Models";
 import type { SupabaseClient } from "@supabase/supabase-js";
 
 export class QuestionService {
@@ -54,14 +54,20 @@ export class QuestionService {
         return Promise.resolve(true);
     }
 
-    async fetchAllQuestions(): Promise<QuestionSummary[]> {
+    /**
+     * Fetches all the questions of the system
+     * @returns `QuestionSummary[]` array of question objects
+     */
+    async fetchAllQuestions(): Promise<QuestionOverview[]> {
         const { data, error } = await this.supaInstance
             .from(this.QUESTIONS_TABLE)
             .select(`
-                id, title, created_at,
+                id, 
+                title,
+                created_at,
                 voters_count:voters (
                     question_id
-                ).count(),
+                )
             `)
 
         // check for errors
@@ -69,17 +75,20 @@ export class QuestionService {
             return Promise.reject(error);
         }
 
-        console.debug(data);
-
-        // parse the data and return
         return Promise.resolve(data);
     }
 
+    /**
+     * Loads and returns `QuestionMeta` for given question ID
+     * @param questionID ID of the question
+     * @returns `QuestionMeda` object
+     */
     async loadQuestionMeta(questionID: number): Promise<QuestionMeta> {
         const { data, error } = await this.supaInstance
             .from(this.QUESTIONS_TABLE)
             .select()
             .eq('id', questionID)
+            .returns<QuestionMeta>()
             .maybeSingle();
         
         // check for errors
@@ -93,19 +102,44 @@ export class QuestionService {
         return Promise.resolve(true);
     }
 
-    async loadQuestionScores(questionID: number): Promise<number[]> {
+    async loadQuestionScores(questionID: number): Promise<QuestionScores> {
         const { data, error } = await this.supaInstance
-            .from(this.SCORES_TABLE)
-            .select('*')
-            .eq('question_id', questionID)
+            .from(this.QUESTIONS_TABLE)
+            .select(`
+                *,
+                scores(*),
+                voters(question_id)
+            `)
+            .eq('id', questionID)
             .maybeSingle()
         
         // check for errors
         if(error) { return Promise.reject(error) }
+        
+        // construct return value
+        const returnValue: QuestionScores = {
+            id: data.id,
+            title: data.title,
+            question_options: data.question_options,
+            created_at: data.created_at,
 
-        console.debug("Question scores: ");
-        console.debug(data)
+            option_scores: [
+                data.scores.option_1,
+                data.scores.option_2,
+                data.scores.option_3,
+                data.scores.option_4,
+                data.scores.option_5,
+            ],
+            none: data.scores.none,
+            not_clear: data.scores.not_clear,
+            inadequate: data.scores.inadequate,
 
-        return Promise.resolve(data);
+            total_voters: data.voters.length
+        }
+
+        console.debug("Parsed data :")
+        console.debug(returnValue)
+
+        return Promise.resolve(returnValue);
     }
 }
