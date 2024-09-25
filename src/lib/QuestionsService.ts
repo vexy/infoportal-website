@@ -1,5 +1,12 @@
-import type { QuestionOverview, QuestionMeta, QuestionScores } from "$models/Models";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { 
+    QuestionOverview,
+    QuestionMeta,
+    QuestionScores,
+    VOTE_OPTIONS
+} from "$models/Models";
+
+import { createHash } from 'node:crypto'
 
 export class QuestionService {
     private supaInstance: SupabaseClient
@@ -13,6 +20,12 @@ export class QuestionService {
         this.supaInstance = supabaseInstance;
     }
 
+    /**
+     * Adds a new question to the system
+     * @param title Question title
+     * @param options Array of strings representing question voting options 
+     * @returns `true` in case of success
+     */
     async addQuestion(title: string, options: string[]): Promise<boolean> {
         const { data, error } = await this.supaInstance
             .from(this.QUESTIONS_TABLE)
@@ -99,7 +112,7 @@ export class QuestionService {
     }
 
     async hasAnsweredQuestion(questionID: number): Promise<boolean> {
-        return Promise.resolve(true);
+        return Promise.resolve(false);
     }
 
     async loadQuestionScores(questionID: number): Promise<QuestionScores> {
@@ -137,9 +150,45 @@ export class QuestionService {
             total_voters: data.voters.length
         }
 
-        console.debug("Parsed data :")
-        console.debug(returnValue)
-
         return Promise.resolve(returnValue);
+    }
+
+    async commitQuestionVote(questionID: number, vote_option: VOTE_OPTIONS) {
+        await this.getCommitHash(questionID);
+    }
+
+    private async getCommitHash(questionID: number): Promise<string> {
+        // get the user info
+        const { data: { user }, error } = await this.supaInstance.auth.getUser();
+        // throw if errors
+        if(error) { return Promise.reject(error) }
+
+        // get question basics
+        const qResponse = await this.supaInstance
+            .from(this.QUESTIONS_TABLE)
+            .select('*')
+            .eq('id', questionID)
+            .maybeSingle()
+        // check for fetch errors
+        if(qResponse.error) { return Promise.reject(qResponse.error) }
+        //
+        const qInfo = qResponse.data;
+
+        // create hashers and combine values
+        const qHasher = createHash('ripemd-160');
+        const finalHasher = createHash('sha-384');
+
+        qHasher.update(qInfo.id.toString());
+        qHasher.update(user?.id);
+        qHasher.update(qInfo.title);
+        for(const anOption in qInfo.question_options) {
+            qHasher.update(anOption);
+        }
+        //
+        finalHasher.update(user?.id);
+        finalHasher.update(qHasher.digest('hex'));
+
+        const finalOutput = finalHasher.digest('hex');
+        return Promise.resolve(finalOutput);
     }
 }
