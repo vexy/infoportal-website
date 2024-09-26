@@ -2,25 +2,23 @@
     import { onMount } from "svelte";
 
     export let data;
-    $: _supaAuth = data.supaAuth;
-    $: _redirect = data.redirectURL;
 
     async function handleGoogleLogin(response) {
         const { credential } = response;
         console.debug("GoogleSignIn success, redirecting to supabase");
-        console.debug("Redirect url: ", _redirect);
+        console.debug("Redirect url: ", data.redirectURL);
 
-        const { data, error} = await _supaAuth.signInWithOAuth({
+        const authResponse = await data.supaAuth.signInWithOAuth({
             provider: 'google',
             options: {
-                redirectTo: _redirect
+                redirectTo: data.redirectURL
             }
         })
 
         // check for errors
-        if(error) {
+        if(authResponse.error) {
             console.error("Unable to login user with Google");
-            console.error(error);
+            console.error(authResponse.error);
 
             //TODO: Show error dialog...
         }

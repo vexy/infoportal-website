@@ -1,8 +1,6 @@
 <script lang="ts">
-    // list of questions will be returned here
     export let data;
-
-    const questions = data.allQuestions;
+    $: questions = data.allQuestions;
 </script>
 
 <!-- IMPROVE SEARCH BAR LATER -->
@@ -26,3 +24,16 @@
     </tr>
     {/each}
 </table>
+
+<style>
+    input {
+        align-self: center;
+        
+        max-width: 280px;
+        margin: 1em;
+        padding: 0.75em;
+
+        border: none;
+        border-radius: 10px;
+    }
+</style>
