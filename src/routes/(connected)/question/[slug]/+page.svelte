@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { VOTE_OPTIONS } from '$models/Models';
+
     // pageload export
     export let data;
 
@@ -6,6 +8,7 @@
     // $: scores = data.scores;
 
     let showAdditionals = false;
+    let optionChoice = -1;  //indicates no selection has been made
 
     function getScorePercentage(optionID: number): number {
         // divide option score with total amount of voters
@@ -47,38 +50,62 @@
 {:else}
 <h1>{data.meta?.title }</h1>
 
-<fieldset>
-    <legend>Понуђени одговори</legend>
-    {#each data.meta?.question_options as voteOption, index }
-        <div>
-            <input
-                id="option_{index}"
-                name="vote_options" 
-                type="radio"
-                value={index}
-            />
-            <label for="option_{index}">{voteOption}</label>
-        </div>
-    {/each}
-
-    {#if showAdditionals}
-        <fieldset>
+<form method="POST" action="?/commitOption">
+    <fieldset>
+        <legend>Понуђени одговори</legend>
+        {#each data.meta?.question_options as voteOption, index }
             <div>
-                <input id="none" type="radio" name="additionals"/>
-                <label for="none">Ништа од наведеног</label>
-
-                <input id="unclear" type="radio" name="additionals"/>
-                <label for="unclear">Питање није разумљиво</label>
-
-                <input id="inadequate" type="radio" name="additionals"/>
-                <label for="inadequate">Не адекватно питање</label>
+                <input
+                    id="option_{index + 1}"
+                    name="vote_options" 
+                    type="radio"
+                    value={VOTE_OPTIONS[index + 1]}
+                    bind:group={optionChoice}
+                />
+                <label for="vote_options">{voteOption}</label>
             </div>
-        </fieldset>
-    {/if}
+        {/each}
 
-    <button on:click={() => {showAdditionals = !showAdditionals}}>Додатне опције</button>
-    <button>Пошаљи одговор</button>
-</fieldset>
+        <p>Selected is: {optionChoice}</p>
+
+        {#if showAdditionals}
+            <fieldset>
+                <div>
+                    <input
+                        id="none"
+                        name="vote_options"
+                        type="radio"
+                        value={VOTE_OPTIONS[6]}
+                        bind:group={optionChoice}
+                    />
+                    <label for="none">Ништа од наведеног</label>
+
+                    <input
+                        id="not_clear"
+                        type="radio"
+                        name="vote_options"
+                        value={VOTE_OPTIONS[7]}
+                        bind:group={optionChoice}
+                    />
+                    <label for="not_clear">Питање није разумљиво</label>
+
+                    <input
+                        id="inadequate"
+                        type="radio"
+                        name="vote_options"
+                        value={VOTE_OPTIONS[8]}
+                        bind:group={optionChoice}
+                    />
+                    <label for="inadequate">Не адекватно питање</label>
+                </div>
+            </fieldset>
+        {/if}
+
+        <button on:click|self|preventDefault={() => {showAdditionals = !showAdditionals}}>Додатне опције</button>
+
+        <button type="submit" disabled={optionChoice === -1}>Пошаљи одговор</button>
+    </fieldset>
+</form>
 {/if}
 
 

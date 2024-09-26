@@ -25,3 +25,14 @@ export interface QuestionScores extends QuestionMeta {
     //
     total_voters: number
 }
+
+export enum VOTE_OPTIONS {
+    OPTION_1 = 1,
+    OPTION_2,
+    OPTION_3,
+    OPTION_4,
+    OPTION_5,
+    NONE,
+    NOT_CLEAR,
+    INADEQUATE
+}

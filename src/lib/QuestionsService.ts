@@ -153,8 +153,83 @@ export class QuestionService {
         return Promise.resolve(returnValue);
     }
 
-    async commitQuestionVote(questionID: number, vote_option: VOTE_OPTIONS) {
-        await this.getCommitHash(questionID);
+    /**
+     * Performs question voting operation and commits the change
+     * @param questionID ID of the question to vote fore
+     * @param vote_option `VOTE_OPTIONS` enum representing the actual user's choice
+     * @returns `true` in case of success; `error` object in case of various errors
+     */
+    async commitQuestionVote(questionID: number, vote_option: VOTE_OPTIONS): Promise<boolean> {
+        // 1. pull out column name
+        const columnName = vote_option.toString().toLowerCase();
+        //
+        // 2. fetch the latest score
+        const qResult = await this.supaInstance
+            .from(this.SCORES_TABLE)
+            .select(columnName)
+            .eq('question_id', questionID)
+            .maybeSingle()
+        //
+        // 2.a) check for fetch errors
+        if(qResult.error) { return Promise.reject(qResult.error) }
+
+        // 3. increase current score by 1 vote
+        // and cache the result in case of further failures
+        const oldValue = qResult.data[[columnName]];
+        const newValue = oldValue + 1;
+        console.debug("Old value: ", oldValue)
+        console.debug("New value: ", newValue)
+
+        // 4. upsert scores table with new score
+        const scoreResult = await this.supaInstance
+            .from(this.SCORES_TABLE)
+            .upsert({
+                question_id: questionID,
+                [columnName]: newValue,
+                last_updated: new Date()
+            })
+            .eq('question_id', questionID);
+
+        // 4.a) check for upsert errors
+        if(scoreResult.error) { 
+            return Promise.reject(scoreResult.error)
+        }
+
+        // 5. calculate commit hash
+        const commitHash = await this.getCommitHash(questionID);
+        console.debug("Commitment hash: ", commitHash);
+
+        // 6. update voters table
+        const commitResult = await this.supaInstance
+            .from('voters')
+            .insert({
+                question_id: questionID,
+                user_hash: commitHash
+            })
+        //
+        // 6.a) check for commit errors
+        if( commitResult.error ) {
+            // revert the last update of the scoring table
+            // to it's original value
+            const rollbackResult = await this.supaInstance
+                .from(this.SCORES_TABLE)
+                .upsert({
+                    question_id: questionID,
+                    [columnName]: oldValue,
+                    last_updated: new Date()
+                })
+                .eq('question_id', questionID);
+            //
+            // check for failures (if this happens, we end with ghost data)
+            if(rollbackResult.error) {
+                return Promise.reject(rollbackResult.error)
+            }
+            
+            return Promise.reject(commitResult.error)
+        }
+
+        // 7. finally:
+        return Promise.resolve(true);
     }
 
     private async getCommitHash(questionID: number): Promise<string> {
@@ -163,15 +238,14 @@ export class QuestionService {
         // throw if errors
         if(error) { return Promise.reject(error) }
 
-        // get question basics
+        // get question basics and check for errors
         const qResponse = await this.supaInstance
             .from(this.QUESTIONS_TABLE)
             .select('*')
             .eq('id', questionID)
             .maybeSingle()
-        // check for fetch errors
+        
         if(qResponse.error) { return Promise.reject(qResponse.error) }
-        //
         const qInfo = qResponse.data;
 
         // create hashers and combine values
