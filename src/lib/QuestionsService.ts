@@ -1,8 +1,14 @@
-import type { Question, QuestionOptions } from "$models/Question";
 import type { SupabaseClient } from "@supabase/supabase-js";
+import type { 
+    QuestionOverview,
+    QuestionMeta,
+    QuestionScores,
+    VOTE_OPTIONS
+} from "$models/Models";
+
+import { createHash } from 'node:crypto'
 
 export class QuestionService {
-    readonly systemQuestions: Question[]
     private supaInstance: SupabaseClient
 
     private QUESTIONS_TABLE = 'questions'
@@ -11,10 +17,15 @@ export class QuestionService {
 
     constructor(supabaseInstance: SupabaseClient) {
         //setup the needs here
-        this.systemQuestions = [];
         this.supaInstance = supabaseInstance;
     }
 
+    /**
+     * Adds a new question to the system
+     * @param title Question title
+     * @param options Array of strings representing question voting options 
+     * @returns `true` in case of success
+     */
     async addQuestion(title: string, options: string[]): Promise<boolean> {
         const { data, error } = await this.supaInstance
             .from(this.QUESTIONS_TABLE)
@@ -56,68 +67,202 @@ export class QuestionService {
         return Promise.resolve(true);
     }
 
-    async fetchAllQuestions(): Promise<Question[]> {
+    /**
+     * Fetches all the questions of the system
+     * @returns `QuestionSummary[]` array of question objects
+     */
+    async fetchAllQuestions(): Promise<QuestionOverview[]> {
         const { data, error } = await this.supaInstance
             .from(this.QUESTIONS_TABLE)
-            .select("*")
+            .select(`
+                id, 
+                title,
+                created_at,
+                voters_count:voters (
+                    question_id
+                )
+            `)
 
         // check for errors
         if(error) {
             return Promise.reject(error);
         }
 
-        // parse the data and return
         return Promise.resolve(data);
     }
 
-    async loadQuestion(questionID: number): Promise<Question> {
-        return Promise.resolve(slugQuestion);
+    /**
+     * Loads and returns `QuestionMeta` for given question ID
+     * @param questionID ID of the question
+     * @returns `QuestionMeda` object
+     */
+    async loadQuestionMeta(questionID: number): Promise<QuestionMeta> {
+        const { data, error } = await this.supaInstance
+            .from(this.QUESTIONS_TABLE)
+            .select()
+            .eq('id', questionID)
+            .returns<QuestionMeta>()
+            .maybeSingle();
+        
+        // check for errors
+        if(error) { return Promise.reject(error) }
+
+        // return the success
+        return Promise.resolve(data);
     }
-}
 
-const dummyOption1: QuestionOptions = {
-    title: "This is some option 1",
-    votersCount: 14,
-}
+    async hasAnsweredQuestion(questionID: number): Promise<boolean> {
+        return Promise.resolve(false);
+    }
 
-const dummyOption2: QuestionOptions = {
-    title: "This is another option 2",
-    votersCount: 5,
-}
-const dummyOption3: QuestionOptions = {
-    title: "This is another option 3",
-    votersCount: 2,
-}
+    async loadQuestionScores(questionID: number): Promise<QuestionScores> {
+        const { data, error } = await this.supaInstance
+            .from(this.QUESTIONS_TABLE)
+            .select(`
+                *,
+                scores(*),
+                voters(question_id)
+            `)
+            .eq('id', questionID)
+            .maybeSingle()
+        
+        // check for errors
+        if(error) { return Promise.reject(error) }
+        
+        // construct return value
+        const returnValue: QuestionScores = {
+            id: data.id,
+            title: data.title,
+            question_options: data.question_options,
+            created_at: data.created_at,
 
-const dummyQuestion: Question = {
-    id: 1,
+            option_scores: [
+                data.scores.option_1,
+                data.scores.option_2,
+                data.scores.option_3,
+                data.scores.option_4,
+                data.scores.option_5,
+            ],
+            none: data.scores.none,
+            not_clear: data.scores.not_clear,
+            inadequate: data.scores.inadequate,
 
-    title: "This is dummy question title",
-    options: [dummyOption1, dummyOption2, dummyOption3],
-    isAnswered: false,
+            total_voters: data.voters.length
+        }
 
-    totalVoters: 10,
-    dateAdded: new Date()
-}
+        return Promise.resolve(returnValue);
+    }
 
-const dummyQuestion2: Question = {
-    id: 2,
-    title: "Dummy question title 2",
-    
-    options: [dummyOption1, dummyOption2, dummyOption3],
-    isAnswered: false,
+    /**
+     * Performs question voting operation and commits the change
+     * @param questionID ID of the question to vote fore
+     * @param vote_option `VOTE_OPTIONS` enum representing the actual user's choice
+     * @returns `true` in case of success; `error` object in case of various errors
+     */
+    async commitQuestionVote(questionID: number, vote_option: VOTE_OPTIONS): Promise<boolean> {
+        // 1. pull out column name
+        const columnName = vote_option.toString().toLowerCase();
+        //
+        // 2. fetch the latest score
+        const qResult = await this.supaInstance
+            .from(this.SCORES_TABLE)
+            .select(columnName)
+            .eq('question_id', questionID)
+            .maybeSingle()
+        //
+        // 2.a) check for fetch errors
+        if(qResult.error) { return Promise.reject(qResult.error) }
 
-    totalVoters: 65,
-    dateAdded: new Date()
-}
+        // 3. increase current score by 1 vote
+        // and cache the result in case of further failures
+        const oldValue = qResult.data[[columnName]];
+        const newValue = oldValue + 1;
+        console.debug("Old value: ", oldValue)
+        console.debug("New value: ", newValue)
 
-const slugQuestion: Question = {
-    id: 4,
-    title: "This question has been pulled from standalone method",
-    
-    options: [dummyOption1, dummyOption2, dummyOption3],
-    isAnswered: false,
+        // 4. upsert scores table with new score
+        const scoreResult = await this.supaInstance
+            .from(this.SCORES_TABLE)
+            .upsert({
+                question_id: questionID,
+                [columnName]: newValue,
+                last_updated: new Date()
+            })
+            .eq('question_id', questionID);
 
-    totalVoters: 11,
-    dateAdded: new Date()
+        // 4.a) check for upsert errors
+        if(scoreResult.error) { 
+            return Promise.reject(scoreResult.error)
+        }
+
+        // 5. calculate commit hash
+        const commitHash = await this.getCommitHash(questionID);
+        console.debug("Commitment hash: ", commitHash);
+
+        // 6. update voters table
+        const commitResult = await this.supaInstance
+            .from('voters')
+            .insert({
+                question_id: questionID,
+                user_hash: commitHash
+            })
+        //
+        // 6.a) check for commit errors
+        if( commitResult.error ) {
+            // revert the last update of the scoring table
+            // to it's original value
+            const rollbackResult = await this.supaInstance
+                .from(this.SCORES_TABLE)
+                .upsert({
+                    question_id: questionID,
+                    [columnName]: oldValue,
+                    last_updated: new Date()
+                })
+                .eq('question_id', questionID);
+            //
+            // check for failures (if this happens, we end with ghost data)
+            if(rollbackResult.error) {
+                return Promise.reject(rollbackResult.error)
+            }
+            
+            return Promise.reject(commitResult.error)
+        }
+
+        // 7. finally:
+        return Promise.resolve(true);
+    }
+
+    private async getCommitHash(questionID: number): Promise<string> {
+        // get the user info
+        const { data: { user }, error } = await this.supaInstance.auth.getUser();
+        // throw if errors
+        if(error) { return Promise.reject(error) }
+
+        // get question basics and check for errors
+        const qResponse = await this.supaInstance
+            .from(this.QUESTIONS_TABLE)
+            .select('*')
+            .eq('id', questionID)
+            .maybeSingle()
+        
+        if(qResponse.error) { return Promise.reject(qResponse.error) }
+        const qInfo = qResponse.data;
+
+        // create hashers and combine values
+        const qHasher = createHash('ripemd-160');
+        const finalHasher = createHash('sha-384');
+
+        qHasher.update(qInfo.id.toString());
+        qHasher.update(user?.id);
+        qHasher.update(qInfo.title);
+        for(const anOption in qInfo.question_options) {
+            qHasher.update(anOption);
+        }
+        //
+        finalHasher.update(user?.id);
+        finalHasher.update(qHasher.digest('hex'));
+
+        const finalOutput = finalHasher.digest('hex');
+        return Promise.resolve(finalOutput);
+    }
 }
