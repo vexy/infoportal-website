@@ -50,7 +50,6 @@ export const load = (async ({ locals: {supabase}, params }) => {
 
     return {
         meta: questionMeta,
-        scores: questionScores,
-        hasAnswered: hasAnsweredQuestion
+        scores: questionScores
     };
 }) satisfies PageServerLoad;

@@ -112,7 +112,21 @@ export class QuestionService {
     }
 
     async hasAnsweredQuestion(questionID: number): Promise<boolean> {
-        return Promise.resolve(false);
+        // get commitment hash
+        const commitmentHash = await this.getCommitHash(questionID);
+
+        // check for entries
+        const { data , error } = await this.supaInstance
+            .from(this.VOTERS_TABLE)
+            .select('user_hash')
+            .eq('question_id', questionID)
+            .eq('user_hash', commitmentHash)
+            .maybeSingle()
+
+        // check for errors
+        if(error) { return Promise.reject(error) }
+        //        
+        return Promise.resolve(data !== null);
     }
 
     async loadQuestionScores(questionID: number): Promise<QuestionScores> {
@@ -177,8 +191,6 @@ export class QuestionService {
         // and cache the result in case of further failures
         const oldValue = qResult.data[[columnName]];
         const newValue = oldValue + 1;
-        console.debug("Old value: ", oldValue)
-        console.debug("New value: ", newValue)
 
         // 4. upsert scores table with new score
         const scoreResult = await this.supaInstance
@@ -197,7 +209,6 @@ export class QuestionService {
 
         // 5. calculate commit hash
         const commitHash = await this.getCommitHash(questionID);
-        console.debug("Commitment hash: ", commitHash);
 
         // 6. update voters table
         const commitResult = await this.supaInstance
