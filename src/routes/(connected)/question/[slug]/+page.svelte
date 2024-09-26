@@ -14,8 +14,8 @@
         return (scores!.option_scores[option] / scores!.total_voters) * 100
     }
 
-    function getScorePercentage(option: VOTE_OPTIONS): number {
-        return (scores!.option_scores[option] / scores!.total_voters) * 100
+    function getScorePercentage(option: VOTE_OPTIONS): string {
+        return ((scores!.option_scores[option] / scores!.total_voters) * 100).toFixed(1)
     }
 
     function getExtrasPercentage(option: VOTE_OPTIONS): string {
