@@ -39,11 +39,19 @@
     }
 
     form {
-        width: 100%;
         display: flex;
         flex-direction: column;
 
         align-items: center;
+    }
+
+    input {
+        min-width: 230px;
+        border: none;
+        border-radius: 10px;
+        padding: 1em;
+        /* font-style: italic; */
+        /* margin: 0.5em; */
     }
 
     p {
@@ -53,20 +61,28 @@
     }
 
     options_container {
-        min-width: 320px;
-        gap: 10px;
-        padding-top: 0.5rem;
-    }
-
-    options_container>div {
+        /* width: 30%; */
         display: flex;
-        flex-direction: row;
-        justify-content: space-around;
+        flex-direction: column;
+        justify-content: space-between;
+        gap: 15px;
     }
 
-    options_container>div>input {
-        min-width: 190px;
+    options_container div > input {
+        min-width: 110px;
     }
+
+    options_container > div {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 25px;
+        /* padding-inline: 1.5rem; */
+    }
+
+    /* options_container>div>input {
+        min-width: 190px;
+    } */
 
     button {
         margin: 1.25rem;
