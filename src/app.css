@@ -1,0 +1,24 @@
+/* define general button style */
+button {
+    min-width: 90px;
+    padding-block: 8px;
+    border: none;
+    border-radius: 7.5px;
+    background: linear-gradient(#755dee, #545557);
+    color: whitesmoke;
+}
+
+button:hover {
+    color: chartreuse;
+    scale: 1.1;
+}
+
+button:active {
+    color: yellow;
+    font-style: italic;
+}
+
+button:disabled {
+    /* font-style: italic; */
+    color: gray;
+}
