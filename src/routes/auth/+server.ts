@@ -6,17 +6,16 @@ export const GET: RequestHandler = async ({ locals: { supabase }, url }) => {
     const code = url.searchParams.get('code');
     if(code) {
         // exchange code for session id
-        console.info("(/Auth route); Exchanging auth code for for session object.");
-        console.debug(code);
+        console.debug("(route:/auth) Exchanging auth code for for session object...");
         const { error } = await supabase.auth.exchangeCodeForSession(code);
 
         // check for errors
         if(!error) {
-            console.debug("No errors during auth, redirecting to /list...");
+            // redirect to main list
             redirect(302, '/list');
         } else {
             //TODO: Redirect to an error page
-            console.error("Error appeared during auth:");
+            console.error("<Error during auth>");
             console.error(error);
         }
     }

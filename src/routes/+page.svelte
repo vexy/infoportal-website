@@ -1,28 +1,26 @@
 <script lang="ts">
+    import { showDialog } from "$lib/Dialogs.js";
     import { onMount } from "svelte";
 
     export let data;
-    $: _supaAuth = data.supaAuth;
-    $: _redirect = data.redirectURL;
 
     async function handleGoogleLogin(response) {
         const { credential } = response;
-        console.debug("GoogleSignIn success, redirecting to supabase");
-        console.debug("Redirect url: ", _redirect);
+        console.debug("Response received: ", credential);
 
-        const { data, error} = await _supaAuth.signInWithOAuth({
+        // perform signup via google (redirect ?)
+        const authResponse = await data.supaAuth.signInWithOAuth({
             provider: 'google',
             options: {
-                redirectTo: _redirect
+                redirectTo: data.redirectURL
             }
         })
 
         // check for errors
-        if(error) {
+        if(authResponse.error) {
             console.error("Unable to login user with Google");
-            console.error(error);
-
-            //TODO: Show error dialog...
+            console.error(authResponse.error);
+            showDialog(true);
         }
     }
 
@@ -46,6 +44,14 @@
         google.accounts.id.prompt();
     })
 </script>
+
+<dialog id="dialogBox">
+    <h2>Не успешна пријава</h2>
+    <p>Пријава на Инфопортал није успела.</p>
+    <p>Покушајте поново</p>
+
+    <button autofocus on:click={() => showDialog(false)}>Затвори</button>
+</dialog>
 
 <main>
     <h1>Инфопортал</h1>
@@ -73,7 +79,6 @@
     }
 
     h1 {
-        font-size: 2.5rem;
         text-transform: uppercase;
     }
 
