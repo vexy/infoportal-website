@@ -14,7 +14,6 @@
         <td>
             <img src="/poll.svg" alt="poll_image" height="30px" width="30px" />
             <a href='/question/{questionItem.id}'>{questionItem.title}</a>
-            <!-- <img src="/people.svg" alt="poll_image" height="25px" width="25px" /> -->
             <!-- <p>Postavljeno: { new Date(questionItem.created_at).toLocaleDateString('sr') }</p> -->
         </td>
         <td>
@@ -27,7 +26,7 @@
 <style>
     search-area {
         align-self: center;
-        margin-inline: 1em;
+        /* margin-inline: 1em; */
     }
 
     input {
