@@ -1,11 +1,29 @@
 <script lang="ts">
     export let data;
     $: questions = data.allQuestions;
+
+    let searchTerm: string = ''
+
+    function performSearch() {
+        console.log(searchTerm)
+        console.log("Lenght : ", searchTerm.length)
+        
+        // check if we just need to reset
+        if(searchTerm.length === 0) {
+            questions = data.allQuestions;
+        } else {
+            //perform filtering
+            questions = questions.filter((question) => {
+                return question.title.toLowerCase().includes(searchTerm.toLowerCase())
+            })
+            console.log("Filters set !")
+        }
+    }
 </script>
 
 <search-area>
-    <input type="text" placeholder="Претражите наслов питања" />
-    <button>Find</button>
+    <input type="text" placeholder="Претражите наслов питања" bind:value={searchTerm}/>
+    <button on:click={performSearch}>Пронађи</button>
 </search-area>
 
 <table>
@@ -26,19 +44,16 @@
 <style>
     search-area {
         align-self: center;
-        /* margin-inline: 1em; */
     }
 
     input {
-        min-width: 210px;
-        max-width: 280px;
-        margin: 1em;
-        padding: 0.75em;
-
-        border: none;
-        border-radius: 10px;
-
         letter-spacing: 1.5px;
+        margin-block: 0.85rem;
+        min-width: 210px;
+    }
+
+    button {
+        margin-inline: 0.75rem;
     }
 
     tr {
