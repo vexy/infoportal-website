@@ -3,6 +3,12 @@ h1 {
     font-size: 2.5rem;
 }
 
+input {
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem;
+}
+
 /* define general button style */
 button {
     min-width: 90px;
@@ -11,16 +17,17 @@ button {
     border-radius: 7.5px;
     background: -webkit-linear-gradient(#755dee, #545557);
     color: whitesmoke;
+    transition: color 0.35s;
 }
 
 button:hover {
-    color: chartreuse;
-    scale: 1.1;
+    color: rgb(143, 201, 84);
+    letter-spacing: 0.75px;
 }
 
 button:active {
-    color: yellow;
-    font-style: italic;
+    color: rgb(181, 127, 119);
+    scale: 0.95;
 }
 
 button:disabled {
@@ -33,7 +40,7 @@ dialog {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: none;
+    border: 0.5px solid #9eb4b4;
     border-radius: 15px;
     box-shadow: 1px 2.5px 10px 3px #9eb5b5
 }

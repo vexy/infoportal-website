@@ -63,11 +63,17 @@
             <p>Не адекватно питање:</p><p>{ getExtrasPercentage(VOTE_OPTIONS.INADEQUATE) } %</p>
         </div>
     </additionals>
+
     <hr>
-    <div>
-        <p>Укупно одговора:</p> <p><b>{ scores.total_voters }</b></p>
+
+    <totals>
+        <div>
+            <img src="/people.svg" alt="vote_count" height="22px" width="22px" />
+            <span>Укупно одговора:</span>
+        </div>
+        <p><b>{ scores.total_voters }</b></p>
         <!-- <meter min="0" max="100" value={questionScores[index]} /> -->
-    </div>
+    </totals>
 
     <!-- TODO: add share button -->
     <!-- <button disabled>Подели</button> -->
@@ -90,6 +96,8 @@
             <label for="vote_options">{voteOption}</label>
         </div>
     {/each}
+
+    <hr>
 
     {#if showAdditionals}
         <fieldset>
@@ -145,15 +153,12 @@
     }
 
     score-container {
-        /* align-self: center; */
         padding-inline: 2rem;
         margin-inline: auto;
-        /* font-size: medium; */
         font-size: 1.1rem;
     }
 
     score-container > div {
-        /* background: black; */
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -162,15 +167,28 @@
 
     additionals > div {
         display: flex;
-        /* flex-direction: row; */
         justify-content: space-between;
         font-size: smaller;
+    }
+
+    totals {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    totals > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.3em;
     }
 
     hr {
         border-style: dotted;
         color: rgb(161, 161, 161);
-        /* border-width: 0.5em; */
+        width: -webkit-fill-available;
     }
 
     meter {

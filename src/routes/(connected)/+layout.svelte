@@ -43,7 +43,7 @@
     }
 
     nav a {
-        color: rgb(219, 225, 223);
+        color: rgb(209, 240, 230);
     }
 
     section {
