@@ -63,11 +63,17 @@
             <p>Не адекватно питање:</p><p>{ getExtrasPercentage(VOTE_OPTIONS.INADEQUATE) } %</p>
         </div>
     </additionals>
+
     <hr>
-    <div>
-        <p>Укупно одговора:</p> <p><b>{ scores.total_voters }</b></p>
+
+    <totals>
+        <div>
+            <img src="/people.svg" alt="vote_count" height="22px" width="22px" />
+            <span>Укупно одговора:</span>
+        </div>
+        <p><b>{ scores.total_voters }</b></p>
         <!-- <meter min="0" max="100" value={questionScores[index]} /> -->
-    </div>
+    </totals>
 
     <!-- TODO: add share button -->
     <!-- <button disabled>Подели</button> -->
@@ -163,6 +169,20 @@
         display: flex;
         justify-content: space-between;
         font-size: smaller;
+    }
+
+    totals {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    totals > div {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 0.3em;
     }
 
     hr {
