@@ -1,0 +1,51 @@
+h1 {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+input {
+    border: none;
+    border-radius: 10px;
+    padding: 0.75rem;
+}
+
+/* define general button style */
+button {
+    min-width: 90px;
+    padding-block: 8px;
+    border: none;
+    border-radius: 7.5px;
+    background: -webkit-linear-gradient(#755dee, #545557);
+    color: whitesmoke;
+    transition: color 0.35s;
+}
+
+button:hover {
+    color: rgb(143, 201, 84);
+    letter-spacing: 0.75px;
+}
+
+button:active {
+    color: rgb(181, 127, 119);
+    scale: 0.95;
+}
+
+button:disabled {
+    /* font-style: italic; */
+    color: gray;
+}
+
+/* general dialog styling */
+dialog {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 0.5px solid #9eb4b4;
+    border-radius: 15px;
+    box-shadow: 1px 2.5px 10px 3px #9eb5b5
+}
+
+::backdrop {
+    background-image: -webkit-linear-gradient(#fafafa, #bababa);
+    opacity: 0.65;
+}

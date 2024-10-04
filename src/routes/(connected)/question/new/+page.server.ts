@@ -25,7 +25,7 @@ export const actions = {
         for(let i = 0; i < 5; i++) {
             const anOption = formData.get(`option_${i}`);
             if(anOption) {
-                // console.debug(`Option ${i}: ${anyOption}`)
+                // add title options
                 questionOptions.push(anOption.toString());
             }
         }
