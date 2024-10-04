@@ -20,13 +20,13 @@ button {
 }
 
 button:hover {
-    color: chartreuse;
-    scale: 1.1;
+    color: rgb(143, 201, 84);
 }
 
 button:active {
-    color: yellow;
-    font-style: italic;
+    color: rgb(241, 182, 18);
+    scale: 0.95;
+    font-kerning: 1.25px;
 }
 
 button:disabled {
@@ -39,7 +39,7 @@ dialog {
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: none;
+    border: 0.5px solid #9eb4b4;
     border-radius: 15px;
     box-shadow: 1px 2.5px 10px 3px #9eb5b5
 }

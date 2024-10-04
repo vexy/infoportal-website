@@ -1,0 +1,9 @@
+<svg width="75px" height="75px" viewBox="0 0 24.00 24.00" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#f08a8a">
+    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g id="SVGRepo_iconCarrier">
+        <path d="M9 9L15 15" stroke="#ada9a9" stroke-width="0.648" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M15 9L9 15" stroke="#ada9a9" stroke-width="0.648" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="12" cy="12" r="9" stroke="#ada9a9" stroke-width="0.648" stroke-linecap="round" stroke-linejoin="round"></circle>
+    </g>
+</svg>

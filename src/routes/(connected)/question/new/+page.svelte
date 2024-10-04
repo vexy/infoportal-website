@@ -9,7 +9,6 @@
     function completeAddition() {
         // close the dialog box
         showDialog(false)
-        console.debug("Going to the list...")
         goto('/list');
     }
 </script>
@@ -53,13 +52,6 @@
         display: flex;
         flex-direction: column;
         align-items: center;
-    }
-
-    input {
-        min-width: 230px;
-        border: none;
-        border-radius: 10px;
-        padding: 1em;
     }
 
     p {
