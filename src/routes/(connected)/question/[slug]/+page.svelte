@@ -91,6 +91,8 @@
         </div>
     {/each}
 
+    <hr>
+
     {#if showAdditionals}
         <fieldset>
             <legend>Додатне опције</legend>
@@ -145,15 +147,12 @@
     }
 
     score-container {
-        /* align-self: center; */
         padding-inline: 2rem;
         margin-inline: auto;
-        /* font-size: medium; */
         font-size: 1.1rem;
     }
 
     score-container > div {
-        /* background: black; */
         display: flex;
         flex-direction: row;
         justify-content: space-between;
@@ -162,7 +161,6 @@
 
     additionals > div {
         display: flex;
-        /* flex-direction: row; */
         justify-content: space-between;
         font-size: smaller;
     }
@@ -170,7 +168,7 @@
     hr {
         border-style: dotted;
         color: rgb(161, 161, 161);
-        /* border-width: 0.5em; */
+        width: -webkit-fill-available;
     }
 
     meter {

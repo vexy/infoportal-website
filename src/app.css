@@ -17,16 +17,17 @@ button {
     border-radius: 7.5px;
     background: -webkit-linear-gradient(#755dee, #545557);
     color: whitesmoke;
+    transition: color 0.35s;
 }
 
 button:hover {
     color: rgb(143, 201, 84);
+    letter-spacing: 0.75px;
 }
 
 button:active {
-    color: rgb(241, 182, 18);
+    color: rgb(181, 127, 119);
     scale: 0.95;
-    font-kerning: 1.25px;
 }
 
 button:disabled {

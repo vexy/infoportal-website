@@ -57,7 +57,9 @@
             <!-- <p>Postavljeno: { new Date(questionItem.created_at).toLocaleDateString('sr') }</p> -->
         </td>
         <td>
-            ( { questionItem.voters_count.length } )
+            <img src="/people.svg" alt="vote_count" height="22px" width="22px" />
+            [ { questionItem.voters_count.length } ]
+            <!-- [ 25122 ] -->
         </td>
     </tr>
     {/each}
@@ -81,11 +83,6 @@
         gap: 0.5rem;
 
         background: none;
-
-        & ::hover {
-            scale: none;
-            color: aqua;
-        }
     }
 
     input {
@@ -100,24 +97,23 @@
 
     tr {
         display: flex;
+        align-items: center;
         justify-content: space-between;
-        align-self: baseline;
     }
-
+    
     td {
         display: flex;
         align-items: center;
-        overflow: hidden;
-        white-space: nowrap;
     }
-
+    
     td:nth-child(2) {
-        margin-inline: 1em;
+        margin-inline: 0.75em;
     }
-
+    
     a {
+        white-space: inherit;
+        overflow: hidden;
         text-overflow: ellipsis;
         margin-inline-start: 0.5em;
-        /* text-decoration: none; */
     }
 </style>

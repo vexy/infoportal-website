@@ -1,7 +1,12 @@
-<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<!-- Uploaded to: SVG Repo, www.svgrepo.com, Transformed by: SVG Repo Mixer Tools -->
-<svg fill="#b80000" height="800px" width="800px" version="1.2" baseProfile="tiny" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 256 256" xml:space="preserve" stroke="#b80000">
-<g id="SVGRepo_bgCarrier" stroke-width="0"/>
-<g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"/>
-<g id="SVGRepo_iconCarrier"> <g> <circle cx="193.3" cy="113.5" r="16.8"/> <circle cx="172.6" cy="155.3" r="16.8"/> <path d="M145.8,175.2h-18.9h-18.9c-11.5,0-18.7,9.5-18.7,21.4v29.3h12.9V200c0-1.2,1-2,2-2c1.2,0,2,0.8,2,2v25.8h41.5V200 c0-1.2,1-2,2-2c1.2,0,2,1,2,2v25.8h12.9v-29.1C164.8,184.7,157.5,175.2,145.8,175.2z"/> <circle cx="150.5" cy="113.5" r="16.8"/> <path d="M199.9,155.3c0,9.3,7.5,16.8,16.8,16.8c9.3,0,16.8-7.5,16.8-16.8c0-9.3-7.5-16.8-16.8-16.8 C207.4,138.5,199.9,146,199.9,155.3z"/> <path d="M198.2,175.2c-11.5,0-18.7,9.5-18.7,21.4v29.3h12.9V200c0-1.2,1-2,2-2c1.2,0,2,0.8,2,2v25.8h41.5V200c0-1.2,1-2,2-2 c1.2,0,2,1,2,2v25.8h12.9v-29.1c0.2-12.1-7.1-21.6-18.7-21.6h-18.9H198.2z"/> <circle cx="40.6" cy="155.3" r="16.8"/> <path d="M15.6,225.8V200c0-1.2,1-2,2-2c1.2,0,2,0.8,2,2v25.8h41.5V200c0-1.2,1-2,2-2c1.2,0,2,1,2,2v25.8h12.9v-29.1 c0.2-12.1-7.1-21.6-18.7-21.6H40.4H21.5c-11.5,0-18.7,9.5-18.7,21.4v29.3H15.6z"/> <path d="M110.1,155.3c0,9.3,7.5,16.8,16.8,16.8c9.3,0,16.8-7.5,16.8-16.8c0-9.3-7.5-16.8-16.8-16.8 C117.6,138.5,110.1,146,110.1,155.3z"/> <circle cx="62.1" cy="113.5" r="16.8"/> <circle cx="107.5" cy="113.5" r="16.8"/> <circle cx="171.5" cy="77.6" r="16.8"/> <circle cx="83.1" cy="77.6" r="16.8"/> <circle cx="128.4" cy="77.6" r="16.8"/> <circle cx="84.9" cy="155.3" r="16.8"/> </g> </g>
-</svg>
+<svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="#f08a8a">
+    <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+    <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+    <g id="SVGRepo_iconCarrier">
+        <path d="M16.719 19.7519L16.0785 14.6279C15.8908 13.1266 14.6146 12 13.1017 12H12H10.8983C9.38538 12 8.10917 13.1266 7.92151 14.6279L7.28101 19.7519C7.1318 20.9456 8.06257 22 9.26556 22H12H14.7344C15.9374 22 16.8682 20.9456 16.719 19.7519Z" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        <circle cx="12" cy="5" r="3" stroke="#ffffff" stroke-width="1.5"></circle>
+        <circle cx="4" cy="9" r="2" stroke="#ffffff" stroke-width="1"></circle>
+        <circle cx="20" cy="9" r="2" stroke="#ffffff" stroke-width="1"></circle>
+        <path d="M4 14H3.69425C2.71658 14 1.8822 14.7068 1.72147 15.6712L1.38813 17.6712C1.18496 18.8903 2.12504 20 3.36092 20H7" stroke="#ffffff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path>
+        <path d="M20 14H20.3057C21.2834 14 22.1178 14.7068 22.2785 15.6712L22.6119 17.6712C22.815 18.8903 21.8751 20 20.6392 20C19.4775 20 18.0952 20 17 20" stroke="#ffffff" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"></path>
+    </g>
+</svg>

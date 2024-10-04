@@ -44,7 +44,7 @@
         {/each}
     </options_container>
 
-    <button>Пошаљи</button>
+    <button type="submit">Пошаљи</button>
 </form>
 
 <style>
