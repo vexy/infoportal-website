@@ -1,6 +1,14 @@
 # Counting platform
 This repository contains simple implementation of the publicly available counting/voting station.
 
+Features:
+- Signup with Google
+- Browse and search list of questions
+- Add new question
+- Provide answers to questions
+
+> Current version: `0.8`
+
 ## TechStack
 Website is made using `SvelteKit` and `TypeScript`. It uses `node 20.x` as a runtime engine.  
 

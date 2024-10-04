@@ -17,6 +17,9 @@ export const GET: RequestHandler = async ({ locals: { supabase }, url }) => {
             //TODO: Redirect to an error page
             console.error("<Error during auth>");
             console.error(error);
+            return new Response(`Authentication wasn't successfull; ${error}`);
         }
     }
+
+    return new Response();  //pass through
 };
