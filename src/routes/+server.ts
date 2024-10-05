@@ -23,8 +23,8 @@ export const GET: RequestHandler = async ({ locals: { supabase }, url }) => {
             throw redirect(302, errorURL);
         }
         
-        console.debug("User successfully registered.")
-        throw redirect(303, '/list');
+        console.debug('User successfully registered.')
+        throw redirect(301, '/list');
     } else {
         return new Response();  //pass through
     }
