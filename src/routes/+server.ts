@@ -8,7 +8,9 @@ export const GET: RequestHandler = async ({ url }) => {
         // just fw to auth route
         console.debug("Redirecting to auth...");
         redirect(301, '/auth');
-    } 
+    }
+    
+    console.debug("Main route (/) GET URL", url);
 
     return new Response(); // just pass through
 };
