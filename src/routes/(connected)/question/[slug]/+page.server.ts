@@ -22,9 +22,11 @@ export const actions = {
     }
 }
 
-export const load = (async ({ locals: {supabase}, params }) => {
+export const load = (async ({ locals: {supabase}, params, parent }) => {
+    await parent();
+
     // TODO: guard from errors and bad slugs
-    // extract slug
+    // extract question slug
     const questionID = Number(params.slug);
     console.debug("QuestionID to load: ", questionID);
 
@@ -42,11 +44,6 @@ export const load = (async ({ locals: {supabase}, params }) => {
     } else {
         questionMeta = await q_service.loadQuestionMeta(questionID)
     }
-
-    // console.debug("data loading complete...");
-    // console.debug("Has answered: ", hasAnsweredQuestion)
-    // console.debug("Meta :", questionMeta)
-    // console.debug("Scores: ", questionScores)
 
     return {
         meta: questionMeta,
