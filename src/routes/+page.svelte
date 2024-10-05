@@ -3,26 +3,25 @@
     import { showDialog } from "$lib/Dialogs.js";
     import { onMount } from "svelte";
 
-    export let data;
-
     async function handleGoogleLogin(response) {
         // check if there's any response
-        if(!response) {
-            // show error dialogs
-            console.error("Unable to login user with Google");
-            showDialog(true);
-        }
-        
-        // extract the response and initiate
-        const { credential } = response;
-        console.debug("Google login response received, redirecting...");
+        if(response) {
+            // extract the response and initiate
+            const { credential } = response;
+            console.debug("Google login response received, redirecting...");
 
-        const resp = await fetch(`/?auth=${credential}`);
-        if(resp.redirected) {
-            console.debug("Redirecting to: ", resp.url);
-            // console.log("Login completed...");
-            await goto(resp.url);
+            const loginResponse = await fetch(`/?auth=${credential}`);
+            if(loginResponse.redirected) {
+                console.debug("Redirecting to: ", loginResponse.url);
+                await goto(loginResponse.url);
+                return
+            }
         }
+
+        // if this part is reached,
+        // just show error dialog
+        console.error("Unable to login user with Google");
+        showDialog(true);
     }
 
     onMount(async () => {
@@ -64,8 +63,6 @@
     <p>100 људи, 100 ћуди</p>
 
     <div id="googleSignInButton"></div>
-
-    <!-- <button on:click={handleGoogleLogin}>test</button> -->
 </main>
 
 <style>

@@ -8,7 +8,7 @@ export const GET: RequestHandler = async ({ locals: { supabase }, url }) => {
         // perform signup via google
         const authResponse = await supabase.auth.signInWithIdToken({
             provider: 'google',
-            token: authCredentials
+            token: authCredentials,
         })
         //TODO: add NONCE
 
