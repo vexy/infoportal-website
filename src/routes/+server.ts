@@ -14,13 +14,17 @@ export const GET: RequestHandler = async ({ locals: { supabase }, url }) => {
 
         // check for errors
         if(authResponse.error) {
-            //TODO: Redirect to static page /auth-error
             console.error("Signup error. Will redirect to /auth-error")
-            // throw redirect(301, '/auth-error');
+            
+            const reason = authResponse.error.message
+            const code = authResponse.error.code
+            const errorURL = `/auth-error?reason=${reason}&code=${code}`
+
+            throw redirect(302, errorURL);
         }
         
         console.debug("User successfully registered.")
-        throw redirect(301, '/list');
+        throw redirect(303, '/list');
     } else {
         return new Response();  //pass through
     }

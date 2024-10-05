@@ -1,14 +1,15 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
-    import { showDialog } from "$lib/Dialogs.js";
     import { onMount } from "svelte";
+    import { fade } from "svelte/transition";
+
+    let showSubtitle = false;
 
     async function handleGoogleLogin(response) {
         // check if there's any response
         if(response) {
             // extract the response and initiate
             const { credential } = response;
-            console.debug("Google login response received, redirecting...");
 
             const loginResponse = await fetch(`/?auth=${credential}`);
             if(loginResponse.redirected) {
@@ -16,12 +17,12 @@
                 await goto(loginResponse.url);
                 return
             }
+
+            // passthrough to handle any other cases
         }
 
-        // if this part is reached,
-        // just show error dialog
-        console.error("Unable to login user with Google");
-        showDialog(true);
+        // generically just show error (as we haven't received any login response)
+        await goto('/auth-error');
     }
 
     onMount(async () => {
@@ -45,43 +46,19 @@
 
         // also display the One Tap dialog
         google.accounts.id.prompt();
-        console.debug("Main route MOUNTED, Google Client initialized.")
+
+        showSubtitle = true
     })
 </script>
 
-<dialog id="dialogBox">
-    <h2>Не успешна пријава</h2>
-    <p>Пријава на Инфопортал није успела.</p>
-    <p>Покушајте поново</p>
-
-    <button autofocus on:click={() => showDialog(false)}>Затвори</button>
-</dialog>
-
-<main>
-    <h1>Инфопортал</h1>
-
-    <p>100 људи, 100 ћуди</p>
-
-    <div id="googleSignInButton"></div>
-</main>
+<h1>Инфопортал</h1>
+{#if showSubtitle}
+    <p transition:fade={{delay: 350, duration: 525 }}>100 људи, 100 ћуди</p>
+{/if}
+<div id="googleSignInButton"></div>
+<!-- <button on:click={handleGoogleLogin}>Test</button> -->
 
 <style>
-    main {
-        top: 0;
-        left: 0;
-        position: absolute;
-        width: 100vw;
-        height: 100vh;
-
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-
-        color: white;
-        background: linear-gradient(#2930e6, #8f615d)
-    }
-
     h1 {
         text-transform: uppercase;
     }
