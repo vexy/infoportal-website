@@ -1,4 +1,9 @@
 <script lang="ts">
+    import type { QuestionOverview } from "$models/Models";
+
+    // import Loader from "$lib/Loader.svelte";
+
+    // export let allQuestions: Promise<QuestionOverview[]>;
     export let data;
     $: questions = data.allQuestions;
 
@@ -20,7 +25,7 @@
     }
 
     function resetSearch() {
-        questions = data.allQuestions;
+        questions = data.allQuestions
         searchTerm = '';
         showResetArea = false;
     }
@@ -49,20 +54,23 @@
 </search-area>
 
 <table>
-    {#each questions as questionItem }
+    <!-- <p>Postavljeno: { new Date(questionItem.created_at).toLocaleDateString('sr') }</p> -->
+    <!-- [ 25122 ] -->
+{#await questions then qSet}
+    {#each qSet as questionItem }
     <tr>
         <td>
             <img src="/poll.svg" alt="poll_image" height="30px" width="30px" />
             <a href='/question/{questionItem.id}'>{questionItem.title}</a>
-            <!-- <p>Postavljeno: { new Date(questionItem.created_at).toLocaleDateString('sr') }</p> -->
         </td>
         <td>
             <img src="/people.svg" alt="vote_count" height="22px" width="22px" />
             [ { questionItem.voters_count.length } ]
-            <!-- [ 25122 ] -->
         </td>
     </tr>
     {/each}
+    
+{/await}
 </table>
 
 <style>
