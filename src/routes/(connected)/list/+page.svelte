@@ -1,33 +1,36 @@
 <script lang="ts">
-    import type { QuestionOverview } from "$models/Models";
+    import type { QuestionOverview } from '$models/Models';
 
-    // import Loader from "$lib/Loader.svelte";
-
-    // export let allQuestions: Promise<QuestionOverview[]>;
     export let data;
     $: questions = data.allQuestions;
 
     let searchTerm: string = ''
     let showResetArea: boolean = false;
+    let hasSearchResults: boolean = false;
+    let tableData: QuestionOverview[];
 
-    function performSearch() {        
+    async function performSearch() {
         // check if we just need to reset
         if(searchTerm.length === 0) {
             resetSearch();
         } else {
-            //perform filtering
-            questions = questions.filter((question) => {
+            // get actual data set to perform filtering on
+            const returnedData = await data.allQuestions;
+            //perform filtering on table data
+            tableData = returnedData.filter((question) => {
                 return question.title.toLowerCase().includes(searchTerm.toLowerCase())
             })
+
             // show reset area
+            hasSearchResults = true;
             showResetArea = true;
         }
     }
 
     function resetSearch() {
-        questions = data.allQuestions
         searchTerm = '';
         showResetArea = false;
+        hasSearchResults = false;
     }
 </script>
 
@@ -54,22 +57,20 @@
 </search-area>
 
 <table>
-    <!-- <p>Postavljeno: { new Date(questionItem.created_at).toLocaleDateString('sr') }</p> -->
-    <!-- [ 25122 ] -->
-{#await questions then qSet}
-    {#each qSet as questionItem }
+{#await questions then questionSet}
+    {#each (hasSearchResults ? tableData : questionSet) as questionItem }
     <tr>
         <td>
             <img src="/poll.svg" alt="poll_image" height="30px" width="30px" />
             <a href='/question/{questionItem.id}'>{questionItem.title}</a>
         </td>
+        <!-- NOTE: created_at filed can be used somewhere -->
         <td>
             <img src="/people.svg" alt="vote_count" height="22px" width="22px" />
             [ { questionItem.voters_count.length } ]
         </td>
     </tr>
     {/each}
-    
 {/await}
 </table>
 
