@@ -1,8 +1,11 @@
 <script lang="ts">
+    import Loader from '$lib/Loader.svelte';
     import { VOTE_OPTIONS } from '$models/Models';
 
-    // pageload export
-    export let data;
+    export let data;        // pageload export
+    export let form;        // form object
+
+    let showLoader = false;
 
     $: meta = data.meta;
     $: scores = data.scores;
@@ -140,11 +143,17 @@
         <button on:click|self|preventDefault={() => {showAdditionals = !showAdditionals}}>Додатне опције</button>
     {/if}
 
-    <button type="submit" disabled={optionChoice === -1}>Пошаљи одговор</button>
+    <!-- check for errors  -->
+    {#if form?.success}
+        <span>Дошло је до грешке приликом постављања питања...</span>
+    {/if}
+
+    <button type="submit" disabled={optionChoice === -1}>
+        Пошаљи одговор
+    </button>
 </form>
 
 {/if}
-
 
 <style>
     h1 {

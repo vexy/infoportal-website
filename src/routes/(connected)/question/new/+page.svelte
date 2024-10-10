@@ -1,15 +1,15 @@
 <script lang="ts">
-    import { goto } from '$app/navigation';
+    import Loader from '$lib/Loader.svelte';
     import { showDialog } from '$lib/Dialogs';
 
     let title_options: string[] = ['','','','',''];
+    
+    export let form = null;
 
-    export let form;
-
-    function completeAddition() {
+    async function completeAddition() {
         // close the dialog box
+        form = null;
         showDialog(false)
-        goto('/list');
     }
 </script>
 
@@ -24,9 +24,13 @@
 {/if}
 
 <form method="POST" action="?/postQuestion">
-    <input name="title" type="text" placeholder="Унесите наслов питања">
+    <input 
+        name="title"
+        type="text"
+        placeholder="Унесите наслов питања"
+    >
     {#if form?.missingTitle }
-        <p>Наслов питања је обавезан...</p>
+        <span>Наслов питања је обавезан...</span>
     {/if}
 
     <options_container>
@@ -34,9 +38,14 @@
         {#each title_options as _, index}    
             <div>
                 <div>
-                    <input name={`option_${index}`} type="text" placeholder="Одговор {index + 1} {index > 1 ? "(опционо)" : ""} " value={title_options[index]}/>
+                    <input 
+                        name={`option_${index}`}
+                        type="text"
+                        placeholder="Одговор {index + 1} {index > 1 ? "(опционо)" : ""} "
+                        value={title_options[index]}
+                    />
                     {#if form?.missingOption && index < 2}
-                        <p>Обавезно поље...</p>
+                        <span>Обавезно поље...</span>
                     {/if}
                 </div>
                 <!-- <img src='/delete-icon.svg' alt='delete_icon' width="20px" height="25px"/> -->
@@ -44,7 +53,10 @@
         {/each}
     </options_container>
 
-    <button type="submit">Пошаљи</button>
+    <!-- TODO: ADD LOADER LATER -->
+        <button type="submit">
+            Пошаљи
+        </button>
 </form>
 
 <style>
@@ -54,10 +66,16 @@
         align-items: center;
     }
 
-    p {
+    form > input {
+        min-width: 300px;
+    }
+
+    span {
+        margin: 5px;
         font-style: italic;
-        font-size: 0.75rem;
+        font-size: smaller;
         color: rgb(200, 7, 7);
+        text-shadow: #fad9cecc -1px 0px 1.25px;
     }
 
     options_container {
@@ -80,7 +98,7 @@
         /* padding-inline: 1.5rem; */
     }
 
-    /* button {
-        margin: 1.25rem;
-    } */
+    button {
+        margin-top: 1.25rem;
+    }
 </style>

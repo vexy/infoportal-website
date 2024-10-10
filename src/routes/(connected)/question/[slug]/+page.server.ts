@@ -4,20 +4,24 @@ import type { PageServerLoad } from './$types';
 
 export const actions = {
     commitOption: async ({ locals: { supabase }, params, request }) => {
-        // get selected vote option from formData
-        const formData = await request.formData();
-        const selectedOption: VOTE_OPTIONS = formData.get('vote_options');
+        try {
+            // get selected vote option from formData
+            const formData = await request.formData();
+            const selectedOption: VOTE_OPTIONS = formData.get('vote_options');
 
-        // get question ID from the page slug
-        // and setup QuestionService
-        const questionID = Number(params.slug);
-        const q_service = new QuestionService(supabase);
+            // get question ID from the page slug
+            // and setup QuestionService
+            const questionID = Number(params.slug);
+            const q_service = new QuestionService(supabase);
 
-        await q_service.commitQuestionVote(questionID, selectedOption);
-        console.log("Commitment success");
+            await q_service.commitQuestionVote(questionID, selectedOption);
+            console.debug("Commitment success !!")
 
-        return {
-            success: true
+            return { success: true }
+        } catch(err) {
+            console.error("FAILED: ")
+            console.error(err)
+            return { success: false }
         }
     }
 }
@@ -41,6 +45,7 @@ export const load = (async ({ locals: {supabase}, params, parent }) => {
     // and load appropriate dataset
     if(hasAnsweredQuestion) {
         questionScores = await q_service.loadQuestionScores(questionID)
+        
     } else {
         questionMeta = await q_service.loadQuestionMeta(questionID)
     }
