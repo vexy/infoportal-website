@@ -8,9 +8,9 @@
         <slot />
     </section>
 
-    <footer>
+    <!-- <footer>
         <p>This is footer area</p>
-    </footer>
+    </footer> -->
 </main>
 
 <style>
