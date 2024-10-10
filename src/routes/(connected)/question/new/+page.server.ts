@@ -29,13 +29,11 @@ export const actions = {
                 questionOptions.push(anOption.toString());
             }
         }
-
-        console.info("Creating question through question service....")
-        const q_service = new QuestionService(supabase);
         //
         try {
+            const q_service = new QuestionService(supabase);
             await q_service.addQuestion(title.toString(), questionOptions);
-            // return success
+            //
             return { success: true }
         } catch (err) {
             console.error("Error during adding new question: ")
@@ -44,7 +42,7 @@ export const actions = {
             //TODO: add more details
             return fail(403, {
                 success: false,
-                missingTitle: false, 
+                missingTitle: false,
                 missingOption: false
             })
         }
