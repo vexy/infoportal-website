@@ -34,6 +34,8 @@
     }
 
     nav {
+        display: flex;
+        justify-content: space-between;
         background-color: #7567e0;
         padding: 0.45rem;
         margin-bottom: 0.5em;

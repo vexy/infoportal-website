@@ -120,7 +120,7 @@
     }
     
     a {
-        white-space: inherit;
+        white-space: pre-wrap;
         overflow: hidden;
         text-overflow: ellipsis;
         margin-inline-start: 0.5em;
