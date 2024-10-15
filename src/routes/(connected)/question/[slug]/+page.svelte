@@ -196,7 +196,7 @@
 
     hr {
         border-style: dotted;
-        color: rgb(161, 161, 161);
+        color: var(--orange);
         width: -webkit-fill-available;
     }
 

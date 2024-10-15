@@ -61,13 +61,15 @@
     {#each (hasSearchResults ? tableData : questionSet) as questionItem }
     <tr>
         <td>
-            <img src="/poll.svg" alt="poll_image" height="30px" width="30px" />
+            <!-- <img src="/poll.svg" alt="poll_image" height="30px" width="30px" /> -->
+            <img src="/people.svg" alt="vote_count" height="22px" width="22px" />
             <a href='/question/{questionItem.id}'>{questionItem.title}</a>
         </td>
         <!-- NOTE: created_at filed can be used somewhere -->
         <td>
-            <img src="/people.svg" alt="vote_count" height="22px" width="22px" />
-            [ { questionItem.voters_count.length } ]
+            <!-- <img src="/people.svg" alt="vote_count" height="22px" width="22px" /> -->
+            [{ questionItem.voters_count.length }]
+            <!-- [ 25122 ] -->
         </td>
     </tr>
     {/each}

@@ -24,8 +24,7 @@
 
         display: flex;
         flex-direction: column;
-
-        background: #438088;
+        background: var(--background-home);
     }
 
     section {
