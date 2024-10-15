@@ -1,3 +1,21 @@
+<svelte:head>
+    <meta name="description" content="Infoportal.app | Место где можете видети јавну статистику, поставити питања другима, отворено, и поуздано." />
+    <meta name="keywords" content="people, question, opinion, vote, poll, survey, results, infoportal">
+
+    <title>Инфопортал - Поставите ново питање</title>
+</svelte:head>
+<svelte:document>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0RR1V030Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-P0RR1V030Z');
+    </script>
+</svelte:document>
+
 <script lang="ts">
     import Loader from '$lib/Loader.svelte';
     import { showDialog } from '$lib/Dialogs';

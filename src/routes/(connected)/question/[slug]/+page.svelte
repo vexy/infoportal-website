@@ -1,9 +1,27 @@
+<svelte:head>
+    <meta name="description" content="Infoportal.app | Ваша питања, одговори, ставови и још много тога." />
+    <meta name="keywords" content="people, question, opinion, vote, poll, survey, results, infoportal">
+
+    <title>Инфопортал - {getPageTitle()}</title>
+</svelte:head>
+<svelte:document>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0RR1V030Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-P0RR1V030Z');
+    </script>
+</svelte:document>
+
 <script lang="ts">
     import Loader from '$lib/Loader.svelte';
     import { VOTE_OPTIONS } from '$models/Models';
     import { fade } from 'svelte/transition';
 
-    export let data;        // pageload export
+    export let data;        // pageload export 
     export let form;        // form object
 
     let showLoader = false;
@@ -35,11 +53,17 @@
 
         return ((extrasCount / scores!.total_voters) * 100).toFixed(1);
     }
+
+    function getPageTitle() {
+        const pageTitle = meta?.title || scores?.title
+        return pageTitle
+    }
 </script>
+
+<h1>{getPageTitle()}</h1>
 
  <!-- check what layout to use -->
 {#if scores}
-<h1> { scores.title } </h1>
 
 <score-container>
     {#each scores.question_options as voteOption, index }
@@ -84,8 +108,6 @@
 </score-container>
 
 {:else}
-
-<h1>{ meta.title }</h1>
 
 <form method="POST" action="?/commitOption">
     {#each meta.question_options as voteOption, index }

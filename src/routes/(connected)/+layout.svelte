@@ -1,12 +1,26 @@
-<main>
+<svelte:document>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0RR1V030Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-P0RR1V030Z');
+    </script>
+</svelte:document>
+
+<main lang="sr-RS">
     <nav>
         <a href="/list">Почетна</a>
-        <img
-            src="/favicon.svg"
-            alt="infoportal_logo"
-            height="25"
-            width="25"
-        />
+        <a href="/list">
+            <img
+                src="/favicon.svg"
+                alt="infoportal_logo"
+                height="25"
+                width="25"
+            />
+        </a>
         <a href="/question/new">Ново питање</a>
     </nav>
 
@@ -40,7 +54,7 @@
     }
 
     nav a {
-        color: var(--blue-dark)
+        color: var(--blue-dark);
     }
 
     section {

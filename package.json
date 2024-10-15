@@ -1,7 +1,10 @@
 {
-	"name": "infoportal-svelte",
-	"version": "0.9.5",
+	"name": "infoportal-full-solution",
+	"version": "1.0",
 	"private": true,
+	"author": {"name": "Vëx", "url": "https://github.com./vexy"},
+	"description": "Simple implementation of publicly available voting station.",
+	"homepage": "https://infoportal.app",
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
