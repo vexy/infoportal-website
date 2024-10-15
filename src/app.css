@@ -1,3 +1,25 @@
+/* Use as an example of specific font style as CSS */
+.geologica-400 {
+  font-family: "Geologica", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0,
+    "SHRP" 0;
+}
+
+body {
+    color: #f6f6f2;
+    font-family: "Geologica", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings:
+        "slnt" 0,
+        "CRSV" 0,
+        "SHRP" 0;
+}
+
 h1 {
     text-align: center;
     font-size: 2.5rem;
@@ -45,7 +67,7 @@ dialog {
     box-shadow: 1px 2.5px 10px 3px #9eb5b5
 }
 
-::backdrop {
+dialog::backdrop {
     background-image: -webkit-linear-gradient(#fafafa, #bababa);
     opacity: 0.65;
 }
