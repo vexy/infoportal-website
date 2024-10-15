@@ -3,7 +3,15 @@
 </script>
 
 <main>
-    <slot />
+    <section>
+        <slot />
+    </section>
+
+    <!-- ADD LATER -->
+    <!-- <learn-more>
+        <p>Saznaj vise</p>
+        <p>Kod platforme</p>
+    </learn-more> -->
 </main>
 
 <style>
@@ -16,10 +24,19 @@
 
         display: flex;
         flex-direction: column;
-        justify-content: center;
-        align-items: center;
+        background: var(--blue-dark);
+    }
 
-        color: white;
-        background: -webkit-linear-gradient(#2930e6, #8f615d)
+    section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        flex-grow: 1;
+    }
+
+    learn-more {
+        display: flex;
+        justify-content: space-evenly;
     }
 </style>

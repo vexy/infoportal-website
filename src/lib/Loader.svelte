@@ -13,15 +13,13 @@
 
         display: flex;
         flex-direction: row;
-        /* align-self: center; */
         align-items: center;
         gap: 0.5rem;
-        /* justify-content: center; */
     }
     
     i {
-        color: #f4ed36;
-        text-shadow: #e9e9c5 0px -1px 2px;
+        color: var(--orange);
+        text-shadow: var(--blue-light) 0px -1px 2px;
     }
 
     .loader {
@@ -34,7 +32,7 @@
     .loader::after {    
         content:"";
         grid-area: 1/1;
-        --c:no-repeat radial-gradient(farthest-side,#48d8c2 92%,#0000);
+        --c:no-repeat radial-gradient(farthest-side,var(--blue-dark) 92%,#0000);
         background: 
             var(--c) 50%  0, 
             var(--c) 50%  100%, 

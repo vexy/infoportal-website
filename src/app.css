@@ -1,3 +1,34 @@
+/* Use as an example of specific font style as CSS */
+.geologica-400 {
+  font-family: "Geologica", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "slnt" 0,
+    "CRSV" 0,
+    "SHRP" 0;
+}
+
+:root {
+    --green-light: #c6edcd;
+    --blue-light: #bedfe8;
+    --blue-medium: #78b3b9;
+    --blue-dark: #438088;
+    --white: #f6f6f2;
+    --orange: #f9b58f;
+}
+
+body {
+    color: var(--white);
+    font-family: "Geologica", sans-serif;
+    font-optical-sizing: auto;
+    font-variation-settings:
+        "slnt" 0,
+        "CRSV" 0,
+        "SHRP" 0;
+}
+
 h1 {
     text-align: center;
     font-size: 2.5rem;
@@ -15,13 +46,19 @@ button {
     padding-block: 8px;
     border: none;
     border-radius: 7.5px;
-    background: -webkit-linear-gradient(#755dee, #545557);
-    color: whitesmoke;
+    
+    color: var(--white);
+    background: var(--orange);
+
+    font-family: "Geologica", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    
     transition: color 0.35s;
 }
 
 button:hover {
-    color: rgb(143, 201, 84);
+    color: var(--green-light);
     letter-spacing: 0.75px;
 }
 
@@ -45,7 +82,7 @@ dialog {
     box-shadow: 1px 2.5px 10px 3px #9eb5b5
 }
 
-::backdrop {
+dialog::backdrop {
     background-image: -webkit-linear-gradient(#fafafa, #bababa);
     opacity: 0.65;
 }

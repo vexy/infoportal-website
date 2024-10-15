@@ -60,6 +60,10 @@
 </form>
 
 <style>
+
+    h1 {
+        margin: 0.3em;
+    }
     form {
         display: flex;
         flex-direction: column;
@@ -67,11 +71,10 @@
     }
 
     form > input {
-        min-width: 300px;
+        min-width: 240px;
     }
 
-    span {
-        margin: 5px;
+    p {
         font-style: italic;
         font-size: smaller;
         color: rgb(200, 7, 7);
@@ -81,13 +84,14 @@
     options_container {
         display: flex;
         flex-direction: column;
+        align-items: center;
         justify-content: space-between;
         gap: 15px;
         margin-bottom: 1em;
     }
 
     options_container div > input {
-        min-width: 110px;
+        min-width: 130px;
     }
 
     options_container > div {
@@ -99,6 +103,6 @@
     }
 
     button {
-        margin-top: 1.25rem;
+        margin-top: 1rem;
     }
 </style>

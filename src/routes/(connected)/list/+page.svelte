@@ -40,7 +40,10 @@
         placeholder="Претражите наслов питања"
         bind:value={searchTerm}
     />
-    <button on:click={performSearch}>Пронађи</button>
+    <button on:click={performSearch}>
+        <!-- ADD SEARCH ICON HERE -->
+        Пронађи
+    </button>
 
     {#if showResetArea}
         <div>
@@ -48,7 +51,7 @@
                 <img 
                     src="/clear.svg" 
                     alt="clear_search" 
-                    height="25px" width="25px"
+                    height="22px" width="22px"
                 />
                 <i>Прикажи сва питања</i>
             </button>
@@ -61,13 +64,14 @@
     {#each (hasSearchResults ? tableData : questionSet) as questionItem }
     <tr>
         <td>
-            <img src="/poll.svg" alt="poll_image" height="30px" width="30px" />
+            <!-- <img src="/poll.svg" alt="poll_image" height="30px" width="30px" /> -->
+            <img src="/people.svg" alt="vote_count" height="22px" width="22px" />
             <a href='/question/{questionItem.id}'>{questionItem.title}</a>
         </td>
         <!-- NOTE: created_at filed can be used somewhere -->
         <td>
-            <img src="/people.svg" alt="vote_count" height="22px" width="22px" />
-            [ { questionItem.voters_count.length } ]
+            <!-- <img src="/people.svg" alt="vote_count" height="22px" width="22px" /> -->
+            [{ questionItem.voters_count.length }]
         </td>
     </tr>
     {/each}
@@ -84,6 +88,10 @@
         justify-content: center;
 
         margin-top: -10px;
+    }
+
+    i {
+        color: var(--orange);
     }
 
     search-area > div > button {

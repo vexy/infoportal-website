@@ -1,7 +1,8 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
-    import { fade } from "svelte/transition";
+    import { bounceIn, elasticOut } from "svelte/easing";
+    import { blur, fade } from "svelte/transition";
 
     let showSubtitle = false;
 
@@ -47,23 +48,40 @@
         // also display the One Tap dialog
         google.accounts.id.prompt();
 
+        //trigger animation display
         showSubtitle = true
     })
 </script>
 
+<img
+    src="/favicon.svg"
+    alt="infoportal_logo"
+    height="80"
+    width="80"
+/>
+
 <h1>Инфопортал</h1>
 {#if showSubtitle}
-    <p transition:fade={{delay: 350, duration: 525 }}>100 људи, 100 ћуди</p>
+    <hr transition:fade={{delay: 580, duration: 410 }}/>
+    <p transition:blur={{delay: 400, duration: 1125, amount: 35, easing: bounceIn }}>100 људи, 100 ћуди</p>
 {/if}
 <div id="googleSignInButton"></div>
-<!-- <button on:click={handleGoogleLogin}>Test</button> -->
 
 <style>
     h1 {
         text-transform: uppercase;
+        margin-bottom: 0;
+    }
+
+    hr {
+        border-style: solid;
+        border-width: 2px;
+        border-color: var(--orange);
+        width: 300px;
     }
 
     p {
         font-style: italic;
+        padding-bottom: 2rem;
     }
 </style>
