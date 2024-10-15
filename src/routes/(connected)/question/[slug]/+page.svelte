@@ -1,6 +1,7 @@
 <script lang="ts">
     import Loader from '$lib/Loader.svelte';
     import { VOTE_OPTIONS } from '$models/Models';
+    import { fade } from 'svelte/transition';
 
     export let data;        // pageload export
     export let form;        // form object
@@ -103,8 +104,8 @@
     <hr>
 
     {#if showAdditionals}
-        <fieldset>
-            <legend>Додатне опције</legend>
+        <fieldset transition:fade={{delay: 75, duration: 400}}>
+            <legend>Додатни одговори</legend>
 
             <div>
                 <input
@@ -140,7 +141,7 @@
             </div>
         </fieldset>
     {:else}
-        <button on:click|self|preventDefault={() => {showAdditionals = !showAdditionals}}>Додатне опције</button>
+        <button on:click|self|preventDefault={() => {showAdditionals = !showAdditionals}}>Додатни одговори</button>
     {/if}
 
     <!-- check for errors  -->
@@ -211,13 +212,17 @@
         display: flex;
         flex-direction: column;
         gap: 10px;
+        margin-inline: 1.5rem;
     }
 
     fieldset {
         display: block;
+        border: solid;
+        border-color: var(--orange);
+        font-weight: 200;
     }
 
-    label {
+    /* label {
         font-size: 1.15em;
-    }
+    } */
 </style>

@@ -47,13 +47,19 @@ button {
     padding-block: 8px;
     border: none;
     border-radius: 7.5px;
-    background: var(--orange);
+    
     color: var(--white);
+    background: var(--orange);
+
+    font-family: "Geologica", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    
     transition: color 0.35s;
 }
 
 button:hover {
-    color: rgb(143, 201, 84);
+    color: var(--green-light);
     letter-spacing: 0.75px;
 }
 

@@ -69,7 +69,6 @@
         <td>
             <!-- <img src="/people.svg" alt="vote_count" height="22px" width="22px" /> -->
             [{ questionItem.voters_count.length }]
-            <!-- [ 25122 ] -->
         </td>
     </tr>
     {/each}

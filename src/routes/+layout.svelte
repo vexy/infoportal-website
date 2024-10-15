@@ -24,7 +24,7 @@
 
         display: flex;
         flex-direction: column;
-        background: var(--background-home);
+        background: var(--blue-dark);
     }
 
     section {

@@ -76,7 +76,7 @@
     hr {
         border-style: solid;
         border-width: 2px;
-        border-color: #f9b58f;
+        border-color: var(--orange);
         width: 300px;
     }
 
