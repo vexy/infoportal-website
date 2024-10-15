@@ -1,16 +1,31 @@
+<div align="center">
+    <img 
+        src="./static/favicon.svg"
+        alt="infoportal_logo"
+        width=80
+    />
+    <p><a href="https://infoportal.app">INFOPORTAL.APP</a></p>
+</div>
+
 # Counting platform
-This repository contains simple implementation of the publicly available counting/voting station.
+This repository contains full solution implementation of the publicly available counting/voting station, allowing anonymous interaction with content of the platform.  
+This codebase represents a variation of same concept, released as [web platform](https://github.com/vexy/infoportal) based on [smart contract](https://github.com/vexy/voting_platform).
 
-Features:
+Platform is open to anyone with valid GMail account.
+
+
+## Platform features
 - Signup with Google
-- Browse and search list of questions
 - Add new question
+- Browse and search list of questions
 - Provide answers to questions
+- Check answered question stats
+- Anonymous interaction
 
-> Current version: `0.8`
+> Current version: `0.9.5`
 
 ## TechStack
-Website is made using `SvelteKit` and `TypeScript`. It uses `node 20.x` as a runtime engine.  
+Platform is made using `SvelteKit` and `TypeScript`. It uses `node 20.x` as a runtime engine.
 
 To get the website running locally, run:  
 ```bash
@@ -23,8 +38,14 @@ To build for `production` use (typical):
 $ npm run build
 ```
 
+Platform uses [Supabase](https://supabase.com) as the general backend system, but it can use any SQL backed processing engine. Check [this helper class](/src/lib/QuestionsService.ts) for more info.
+
 ### Contribution
-Want to contribute? Check out [project pages](https://github.com/users/vexy/projects/2).
+Website design: [Aleksandra @ Bihance](https://www.bihance.net/aleksandrarajolka)  
+Initial React version: [turicam](https://github.com/turicam)
+
+_Want to contribute_ ?  
+Check out [project pages](https://github.com/users/vexy/projects/2) for more info on the actual issues.
 
 ### Licence
 Licensed under GPL-3.0 license.  
