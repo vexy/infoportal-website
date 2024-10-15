@@ -19,7 +19,7 @@
         justify-content: center;
         align-items: center;
 
-        color: white;
-        background: -webkit-linear-gradient(#2930e6, #8f615d)
+        /* background: -webkit-linear-gradient(#2930e6, #8f615d) */
+        background: #438088;
     }
 </style>
