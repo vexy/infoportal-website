@@ -10,8 +10,18 @@
     "SHRP" 0;
 }
 
+:root {
+    --background-home: #438088;
+    --green-light: #c6edcd;
+    --blue-light: #bedfe8;
+    --blue-medium: #78b3b9;
+    --blue-dark: #438088;
+    --white: #f6f6f2;
+    --orange: #f9b58f;
+}
+
 body {
-    color: #f6f6f2;
+    color: var(--white);
     font-family: "Geologica", sans-serif;
     font-optical-sizing: auto;
     font-variation-settings:
@@ -37,8 +47,8 @@ button {
     padding-block: 8px;
     border: none;
     border-radius: 7.5px;
-    background: -webkit-linear-gradient(#755dee, #545557);
-    color: whitesmoke;
+    background: var(--orange);
+    color: var(--white);
     transition: color 0.35s;
 }
 
