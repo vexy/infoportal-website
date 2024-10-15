@@ -40,7 +40,10 @@
         placeholder="Претражите наслов питања"
         bind:value={searchTerm}
     />
-    <button on:click={performSearch}>Пронађи</button>
+    <button on:click={performSearch}>
+        <!-- ADD SEARCH ICON HERE -->
+        Пронађи
+    </button>
 
     {#if showResetArea}
         <div>
@@ -48,7 +51,7 @@
                 <img 
                     src="/clear.svg" 
                     alt="clear_search" 
-                    height="25px" width="25px"
+                    height="22px" width="22px"
                 />
                 <i>Прикажи сва питања</i>
             </button>
@@ -85,6 +88,10 @@
         justify-content: center;
 
         margin-top: -10px;
+    }
+
+    i {
+        color: var(--orange);
     }
 
     search-area > div > button {
