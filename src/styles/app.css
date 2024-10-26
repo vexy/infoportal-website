@@ -50,11 +50,13 @@ main {
 
 footer {
     position: static;
-    max-height: 30px;
+    padding: 5px;
     
     background: var(--footer);
     display: flex;
     justify-content: space-evenly;
+
+    font-size: smaller;
 }
 
 h1 {
