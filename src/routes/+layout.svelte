@@ -3,11 +3,12 @@
     import '$styles/buttons.css'
 </script>
 
-<main>
+<main lang="sr-RS">
     <slot />
 </main>
 
 <footer>
-    <p>Saznaj vise</p>
+    <a href="/learn-more">Сазнај више</a>
+    <a href="/learn-more">Подр</a>
     <p>Kod platforme</p>
 </footer>

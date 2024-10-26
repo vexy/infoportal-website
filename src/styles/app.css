@@ -17,6 +17,7 @@
     --blue-dark: #438088;
     --white: #f6f6f2;
     --orange: #f9b58f;
+    --footer: #884B43;
 }
 
 body {
@@ -51,7 +52,7 @@ footer {
     position: static;
     max-height: 30px;
     
-    color: #BAC;
+    background: var(--footer);
     display: flex;
     justify-content: space-evenly;
 }
