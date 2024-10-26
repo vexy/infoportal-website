@@ -11,7 +11,8 @@ const config = {
 
 		// custom aliases
 		alias: {
-			$models: "src/models"
+			$models: "src/models",
+			$styles: "src/styles"
 		}
 	}
 };
