@@ -10,57 +10,62 @@
     </script>
 </svelte:document>
 
-<main lang="sr-RS">
-    <nav>
-        <a href="/list">Почетна</a>
-        <a href="/list">
-            <img
-                src="/favicon.svg"
-                alt="infoportal_logo"
-                height="25"
-                width="25"
-            />
-        </a>
-        <a href="/question/new">Ново питање</a>
-    </nav>
+<nav>
+    <a href="/list">
+        <img
+            src="/favicon.svg"
+            alt="infoportal_logo"
+            height="25"
+            width="25"
+        />
+    </a>
+    <a href="/question/new">Ново питање</a>
+    <a href="/stats">
+        <img 
+            src="/poll.svg"
+            alt="statistika"
+            height="25"
+            width="25"
+        />
+    </a>
+</nav>
 
-    <section>
-        <slot />
-    </section>
-
-</main>
-<!-- <p>This is footer area</p> -->
+<section data-sveltekit-preload-data="hover">
+    <slot />
+</section>
 
 <style>
-    main {
-        align-self: normal;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 2;
-        background-color: var(--white);
-        color: var(--blue-dark);
-    }
-
     nav {
+        width: 100vw;
         display: flex;
         flex-direction: row;
         justify-content: space-between;
         background-color: var(--blue-medium);
-        padding: 0.45rem;
-        margin-bottom: 0.5em;
+        padding: 0.25rem;
+        margin-bottom: 2px;
 
         border-bottom: 1.5px solid var(--green-light);
-        box-shadow: 0px 3.5px 7px rgb(205, 205, 205);
+        -moz-box-shadow: 0 1px 2px 1px rgba(200, 200, 200, 0.6);
+        -webkit-box-shadow: 0 1px 2px 1px rgba(200, 200, 200, 0.6);
+        box-shadow: 0 1px 2px 1px rgba(200, 200, 200, 0.6);
     }
 
     nav a {
         color: var(--blue-dark);
+        margin-inline: 10px;
     }
 
     section {
+        width: 100vw;
+        
         display: flex;
         flex-direction: column;
         justify-content: space-between;
         overflow-y: hidden;
+        flex-grow: 1;
+        padding-bottom: 10px;
+
+        background: var(--white);
+        color: var(--blue-dark);
     }
 </style>

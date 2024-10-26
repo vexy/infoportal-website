@@ -20,8 +20,13 @@
 }
 
 body {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100vw;
+    min-height: 100vh;
     margin: 0;
-    color: var(--white);
+
     font-family: "Geologica", sans-serif;
     font-optical-sizing: auto;
     font-variation-settings:
@@ -31,23 +36,20 @@ body {
 }
 
 main {
-    top: 0;
-    left: 0;
-    position: absolute;
-    width: 100vw;
+    position: relative;
     min-height: 100vh;
 
     display: flex;
     flex-direction: column;
-
-    overflow-y: visible;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
     background: var(--blue-dark);
 }
 
 footer {
-    position: relative;
-    bottom: 0;
-    /* min-height: 75px; */
+    position: static;
+    max-height: 30px;
     
     color: #BAC;
     display: flex;
