@@ -20,6 +20,7 @@
 }
 
 body {
+    margin: 0;
     color: var(--white);
     font-family: "Geologica", sans-serif;
     font-optical-sizing: auto;
@@ -27,6 +28,30 @@ body {
         "slnt" 0,
         "CRSV" 0,
         "SHRP" 0;
+}
+
+main {
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100vw;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
+    overflow-y: visible;
+    background: var(--blue-dark);
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+    /* min-height: 75px; */
+    
+    color: #BAC;
+    display: flex;
+    justify-content: space-evenly;
 }
 
 h1 {
@@ -38,38 +63,6 @@ input {
     border: none;
     border-radius: 10px;
     padding: 0.75rem;
-}
-
-/* define general button style */
-button {
-    min-width: 90px;
-    padding-block: 8px;
-    border: none;
-    border-radius: 7.5px;
-    
-    color: var(--white);
-    background: var(--orange);
-
-    font-family: "Geologica", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    
-    transition: color 0.35s;
-}
-
-button:hover {
-    color: var(--green-light);
-    letter-spacing: 0.75px;
-}
-
-button:active {
-    color: rgb(181, 127, 119);
-    scale: 0.95;
-}
-
-button:disabled {
-    /* font-style: italic; */
-    color: gray;
 }
 
 /* general dialog styling */

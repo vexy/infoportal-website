@@ -1,0 +1,32 @@
+/* GENERAL BUTTON STYLING */
+
+button {
+    min-width: 90px;
+    padding-block: 8px;
+    border: none;
+    border-radius: 7.5px;
+    
+    color: var(--white);
+    background: var(--orange);
+
+    font-family: "Geologica", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 300;
+    
+    transition: color 0.35s;
+}
+
+button:hover {
+    color: var(--green-light);
+    letter-spacing: 0.75px;
+}
+
+button:active {
+    color: rgb(181, 127, 119);
+    scale: 0.95;
+}
+
+button:disabled {
+    /* font-style: italic; */
+    color: gray;
+}
