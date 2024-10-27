@@ -28,7 +28,7 @@
         margin: 1.2rem;
         padding-inline: 5px;
         min-width: 300px;
-        border: #da960d solid 1px;
+        border: var(--orange) solid 1px;
         border-radius: 1em;
         
         display: flex;
@@ -37,7 +37,7 @@
         align-items: center;
         gap: 10px;
 
-        color: #b54f62;
+        color: var(--green-light);
         transition: font-size 350ms, border 1s;
     }
 

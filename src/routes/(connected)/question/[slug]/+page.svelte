@@ -17,7 +17,7 @@
 </svelte:document>
 
 <script lang="ts">
-    import Loader from '$lib/Loader.svelte';
+    import Loader from '../../../../components/Loader.svelte';
     import { VOTE_OPTIONS } from '$models/Models';
     import { fade } from 'svelte/transition';
 

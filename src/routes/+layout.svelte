@@ -1,42 +1,11 @@
 <script lang="ts">
-    import '../app.css'
+    import '$styles/app.css';
+    import '$styles/buttons.css'
+    import Footer from '$components/Footer.svelte';
 </script>
 
-<main>
-    <section>
-        <slot />
-    </section>
-
-    <!-- ADD LATER -->
-    <!-- <learn-more>
-        <p>Saznaj vise</p>
-        <p>Kod platforme</p>
-    </learn-more> -->
+<main lang="sr-RS">
+    <slot />
 </main>
 
-<style>
-    main {
-        top: 0;
-        left: 0;
-        position: absolute;
-        width: 100vw;
-        height: 100vh;
-
-        display: flex;
-        flex-direction: column;
-        background: var(--blue-dark);
-    }
-
-    section {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        flex-grow: 1;
-    }
-
-    learn-more {
-        display: flex;
-        justify-content: space-evenly;
-    }
-</style>
+<Footer />

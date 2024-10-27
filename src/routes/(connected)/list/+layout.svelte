@@ -6,8 +6,8 @@
 </svelte:head>
 <script lang="ts">
     import { navigating } from '$app/stores';
-    import Loader from '$lib/Loader.svelte';
     import type { LayoutData } from './$types';
+    import Loader from '$components/Loader.svelte';
     
     export let data: LayoutData;
 </script>
