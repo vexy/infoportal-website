@@ -16,8 +16,8 @@ export const handle: Handle = async ({ event, resolve }) => {
           event.cookies.set(name, value, { ...options, path: '/' })
         )
       },
-    }
-    // cookieEncoding: 'base64url'
+    },
+    cookieEncoding: 'base64url'
   })
 
   return resolve(event, {
