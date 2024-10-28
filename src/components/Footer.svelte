@@ -30,7 +30,20 @@
         </section>
     </div>
 
+    <!-- Social share -->
     <div>
+        <iframe 
+            src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Finfoportal.app&layout&size&width=77&height=20&appId"
+            width="77"
+            height="20"
+            style="border:none;overflow:hidden"
+            scrolling="no"
+            frameborder="0"
+            allowfullscreen="true"
+            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
+            title="Facebook share"
+            data-size="large"
+        />
         <a href="https://twitter.com/intent/tweet?button_hashtag=infoportal&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-text="На Инфопортал платформи можете сазнати више на разне теме" data-url="https://infoportal.app" data-lang="en" data-show-count="false">Tweet #button</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
 

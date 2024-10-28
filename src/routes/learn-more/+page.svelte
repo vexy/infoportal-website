@@ -48,4 +48,8 @@
     h3 {
         text-align: center;
     }
+
+    ul {
+        margin: 0.5rem;
+    }
 </style>
