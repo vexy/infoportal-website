@@ -1,3 +1,22 @@
+<svelte:head>
+    <meta name="description" content="Infoportal.app | Ваша питања, одговори, ставови и још много тога." />
+    <meta name="keywords" content="learn, more, infoportal, stats, people, poll, survey">
+    <meta name="keywords" content="karakteristike, authors, fraud, prevention">
+    <meta name="keywords" content="pokret, moba">
+
+    <title>Инфопортал - сазнај више</title>
+</svelte:head>
+<svelte:document>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0RR1V030Z"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        
+        gtag('config', 'G-P0RR1V030Z');
+    </script>
+</svelte:document>
 <h1>Шта је Infoportal ?</h1>
 
 <ul>
