@@ -50,13 +50,17 @@ main {
 
 footer {
     position: static;
-    padding: 5px;
+    padding: 15px;
+    font-size: smaller;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1.25rem;
     
     background: var(--footer);
-    display: flex;
-    justify-content: space-evenly;
-
-    font-size: smaller;
+    color: #bababa;
 }
 
 h1 {
