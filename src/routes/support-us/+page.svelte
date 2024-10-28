@@ -1,4 +1,4 @@
-svelte:head>
+<svelte:head>
     <meta name="description" content="Infoportal.app | Ваша питања, одговори, ставови и још много тога." />
     <meta name="keywords" content="support, infoportal, people, poll, survey, finances">
 
