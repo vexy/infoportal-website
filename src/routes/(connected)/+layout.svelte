@@ -57,10 +57,11 @@
 
     section {
         width: 100vw;
+        height: 100vh;
         
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
+        justify-content: space-evenly;
         overflow-y: hidden;
         flex-grow: 1;
         padding-bottom: 10px;

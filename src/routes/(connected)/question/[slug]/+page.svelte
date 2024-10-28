@@ -17,14 +17,11 @@
 </svelte:document>
 
 <script lang="ts">
-    import Loader from '../../../../components/Loader.svelte';
     import { VOTE_OPTIONS } from '$models/Models';
     import { fade } from 'svelte/transition';
 
     export let data;        // pageload export 
     export let form;        // form object
-
-    let showLoader = false;
 
     $: meta = data.meta;
     $: scores = data.scores;
@@ -243,8 +240,4 @@
         border-color: var(--orange);
         font-weight: 200;
     }
-
-    /* label {
-        font-size: 1.15em;
-    } */
 </style>
