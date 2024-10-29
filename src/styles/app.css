@@ -17,16 +17,50 @@
     --blue-dark: #438088;
     --white: #f6f6f2;
     --orange: #f9b58f;
+    --footer: #884B43;
 }
 
 body {
-    color: var(--white);
+    top: 0;
+    left: 0;
+    position: absolute;
+    width: 100vw;
+    min-height: 100vh;
+    margin: 0;
+
     font-family: "Geologica", sans-serif;
     font-optical-sizing: auto;
     font-variation-settings:
         "slnt" 0,
         "CRSV" 0,
         "SHRP" 0;
+}
+
+main {
+    position: relative;
+    min-height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    background: var(--blue-dark);
+}
+
+footer {
+    position: static;
+    padding: 15px;
+    font-size: smaller;
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    gap: 1.25rem;
+    
+    background: var(--footer);
+    color: #bababa;
 }
 
 h1 {
@@ -38,38 +72,6 @@ input {
     border: none;
     border-radius: 10px;
     padding: 0.75rem;
-}
-
-/* define general button style */
-button {
-    min-width: 90px;
-    padding-block: 8px;
-    border: none;
-    border-radius: 7.5px;
-    
-    color: var(--white);
-    background: var(--orange);
-
-    font-family: "Geologica", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 300;
-    
-    transition: color 0.35s;
-}
-
-button:hover {
-    color: var(--green-light);
-    letter-spacing: 0.75px;
-}
-
-button:active {
-    color: rgb(181, 127, 119);
-    scale: 0.95;
-}
-
-button:disabled {
-    /* font-style: italic; */
-    color: gray;
 }
 
 /* general dialog styling */

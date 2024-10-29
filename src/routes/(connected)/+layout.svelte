@@ -10,57 +10,29 @@
     </script>
 </svelte:document>
 
-<main lang="sr-RS">
-    <nav>
-        <a href="/list">Почетна</a>
-        <a href="/list">
-            <img
-                src="/favicon.svg"
-                alt="infoportal_logo"
-                height="25"
-                width="25"
-            />
-        </a>
-        <a href="/question/new">Ново питање</a>
-    </nav>
+<script>
+    import Header from "$components/Header.svelte";
+</script>
 
-    <section>
-        <slot />
-    </section>
+<Header />
 
-</main>
-<!-- <p>This is footer area</p> -->
+<section data-sveltekit-preload-data="hover">
+    <slot />
+</section>
 
 <style>
-    main {
-        align-self: normal;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 2;
-        background-color: var(--white);
-        color: var(--blue-dark);
-    }
-
-    nav {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-between;
-        background-color: var(--blue-medium);
-        padding: 0.45rem;
-        margin-bottom: 0.5em;
-
-        border-bottom: 1.5px solid var(--green-light);
-        box-shadow: 0px 3.5px 7px rgb(205, 205, 205);
-    }
-
-    nav a {
-        color: var(--blue-dark);
-    }
-
     section {
+        width: 100vw;
+        height: 100vh;
+        
         display: flex;
         flex-direction: column;
-        justify-content: space-between;
-        overflow-y: hidden;
+        justify-content: space-evenly;
+        overflow-y: auto;
+        flex-grow: 1;
+        padding-bottom: 10px;
+
+        background: var(--white);
+        color: var(--blue-dark);
     }
 </style>

@@ -1,7 +1,7 @@
 <script lang="ts">
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
-    import { bounceIn, elasticOut } from "svelte/easing";
+    import { bounceIn } from "svelte/easing";
     import { blur, fade } from "svelte/transition";
 
     let showSubtitle = false;
@@ -9,12 +9,12 @@
     async function handleGoogleLogin(response) {
         // check if there's any response
         if(response) {
-            // extract the response and initiate
+            // extract the response and initiate server authentication
             const { credential } = response;
 
-            const loginResponse = await fetch(`/?auth=${credential}`);
+            const loginResponse = await fetch(`/?auth=${credential}`, { method: 'POST' });
             if(loginResponse.redirected) {
-                console.debug("Redirecting to: ", loginResponse.url);
+                console.debug("Auth success, redirecting to: ", loginResponse.url);
                 await goto(loginResponse.url);
                 return
             }

@@ -9,12 +9,12 @@ export const handle: Handle = async ({ event, resolve }) => {
   event.locals.supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {
     cookies: {
       getAll() {
-          return event.cookies.getAll()
+        return event.cookies.getAll()
       },
       setAll(cookiesToSet) {
-          cookiesToSet.forEach(({ name, value, options }) => 
-            event.cookies.set(name, value, { ...options, path: '/' })
-          )
+        cookiesToSet.forEach(({ name, value, options }) => 
+          event.cookies.set(name, value, { ...options, path: '/' })
+        )
       },
     },
     cookieEncoding: 'base64url'

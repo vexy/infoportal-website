@@ -17,7 +17,6 @@
 </svelte:document>
 
 <script lang="ts">
-    import Loader from '$lib/Loader.svelte';
     import { showDialog } from '$lib/Dialogs';
 
     let title_options: string[] = ['','','','',''];
@@ -72,9 +71,9 @@
     </options_container>
 
     <!-- TODO: ADD LOADER LATER -->
-        <button type="submit">
-            Пошаљи
-        </button>
+    <button type="submit">
+        Пошаљи
+    </button>
 </form>
 
 <style>
