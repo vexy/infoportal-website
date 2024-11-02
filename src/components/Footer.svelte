@@ -24,26 +24,15 @@
         <!-- LEGAL -->
         <section>
             <span><b>Правне основе</b></span>
-            <a href="https://www.iubenda.com/terms-and-conditions/10283915" class="iubenda-black iubenda-noiframe iubenda-embed iubenda-noiframe " title="Услови коришћења">Услови коришћења</a>
-            <a href="https://www.iubenda.com/privacy-policy/10283915" class="iubenda-black iubenda-noiframe iubenda-embed iubenda-noiframe " title="Политика приватности">Политика приватности података</a>
-            <a href="https://www.iubenda.com/privacy-policy/10283915/cookie-policy" class="iubenda-black iubenda-noiframe iubenda-embed iubenda-noiframe " title="Политика колачића">Политика колачића</a>
+            <a href="https://www.iubenda.com/privacy-policy/10283915" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Политика приватности">Политика приватности</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+            <a href="https://www.iubenda.com/terms-and-conditions/10283915" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Услови коришћења">Услови коришћења</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
+            <a href="https://www.iubenda.com/privacy-policy/10283915/cookie-policy" class="iubenda-white iubenda-noiframe iubenda-embed iubenda-noiframe " title="Политика колачића">Политика колачића</a><script type="text/javascript">(function (w,d) {var loader = function () {var s = d.createElement("script"), tag = d.getElementsByTagName("script")[0]; s.src="https://cdn.iubenda.com/iubenda.js"; tag.parentNode.insertBefore(s,tag);}; if(w.addEventListener){w.addEventListener("load", loader, false);}else if(w.attachEvent){w.attachEvent("onload", loader);}else{w.onload = loader;}})(window, document);</script>
         </section>
     </div>
 
     <!-- Social share -->
     <div>
-        <iframe 
-            src="https://www.facebook.com/plugins/share_button.php?href=https%3A%2F%2Finfoportal.app&layout&size&width=77&height=20&appId"
-            width="77"
-            height="20"
-            style="border:none;overflow:hidden"
-            scrolling="no"
-            frameborder="0"
-            allowfullscreen="true"
-            allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"
-            title="Facebook share"
-            data-size="large"
-        />
+        <div class="fb-share-button" data-href="https://infoportal.app" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Finfoportal.app%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
         <a href="https://twitter.com/intent/tweet?button_hashtag=infoportal&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-text="На Инфопортал платформи можете сазнати више на разне теме" data-url="https://infoportal.app" data-lang="en" data-show-count="false">Tweet #button</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
 
