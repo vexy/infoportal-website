@@ -35,6 +35,16 @@
 		%sveltekit.head%
 	</head>
 
+	<!-- IUBENDA STUFF -->
+	<script type="text/javascript">
+		var _iub = _iub || [];
+		_iub.csConfiguration = {"siteId":3804988,"cookiePolicyId":10283915,"storage":{"useSiteId":true}};
+		_iub.csLangConfiguration = {"en":{"cookiePolicyId":10283915},"hr":{"cookiePolicyId":76237133}};
+		</script>
+	<script type="text/javascript" src="https://cs.iubenda.com/autoblocking/3804988.js"></script>
+	<script type="text/javascript" src="//cdn.iubenda.com/cs/gpp/stub.js"></script>
+	<script type="text/javascript" src="//cdn.iubenda.com/cs/iubenda_cs.js" charset="UTF-8" async></script>
+
 	<!-- Google Tag Manager -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-P0RR1V030Z"></script>
 	<script>
@@ -43,6 +53,17 @@
 		gtag('js', new Date());
 
 		gtag('config', 'G-P0RR1V030Z');
+	</script>
+
+	<!-- Load Facebook SDK for JavaScript -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+		var js, fjs = d.getElementsByTagName(s)[0];
+		if (d.getElementById(id)) return;
+		js = d.createElement(s); js.id = id;
+		js.src = "https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0";
+		fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
 	</script>
 
 	<body>

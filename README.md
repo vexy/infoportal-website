@@ -41,7 +41,7 @@ $ npm run build
 Platform uses [Supabase](https://supabase.com) as the general backend system, but it can use any SQL backed processing engine. Check [this helper class](/src/lib/QuestionsService.ts) for more info.
 
 ### Contribution
-Website design: [Aleksandra @ Bihance](https://www.behance.net/aleksandrajolka)  
+Website design: [Aleksandra @ Behance](https://www.behance.net/aleksandrajolka)  
 Initial React version: [turicam](https://github.com/turicam)
 
 _Want to contribute_ ?  
