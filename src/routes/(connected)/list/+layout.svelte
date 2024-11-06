@@ -13,10 +13,10 @@
 </script>
     
 {#await data.allQuestions}
-    <Loader message="Учитавање питања..." />
+    <Loader message="Учитавање свих питања..." />
 {:then}
     {#if $navigating?.complete}
-        <Loader message="" />
+        <Loader message="Учитавање питања..." />
     {:else}
         <slot />
     {/if}

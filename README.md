@@ -21,8 +21,9 @@ Platform is open to anyone with valid GMail account.
 - Provide answers to questions
 - Check answered question stats
 - Anonymous interaction
+- Usage statistics
 
-> Current version: `1.0`
+> Current version: `1.2`
 
 ## TechStack
 Platform is made using `SvelteKit` and `TypeScript`. It uses `node 20.x` as a runtime engine.

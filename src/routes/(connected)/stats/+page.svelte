@@ -23,6 +23,16 @@
 <section>
     <h1>Статистика платформе</h1>
     <p>Број постављених питања: {data.questionCount}</p>
+    <p>Број регистрованих корисника: {data.usersCount}</p>
+
+    <p>Топ 5 земаља из које долазе корисници:</p>
+    <ol>
+        {#each data.userCountries as country }    
+            <li>{country}</li>
+        {/each}
+    </ol>
+
+    <i>Статистика се освежава једном недељно</i>
 </section>
 
 <style>
@@ -31,6 +41,14 @@
         flex-direction: column;
         align-items: center;
         justify-content: center;
-        flex-grow: 2;
+    }
+
+    h1 {
+        margin-bottom: 5rem;
+    }
+
+    i {
+        margin-top: 5rem;
+        font-weight: 200;
     }
 </style>
