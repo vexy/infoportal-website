@@ -50,7 +50,7 @@
             <button on:click={resetSearch}>
                 <img 
                     src="/clear.svg" 
-                    alt="clear_search" 
+                    alt="clear_search"
                     height="22px" width="22px"
                 />
                 <i>Прикажи сва питања</i>

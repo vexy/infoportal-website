@@ -3,7 +3,7 @@ import { createServerClient } from '@supabase/ssr'
 import { type Handle } from '@sveltejs/kit'
 
 export const handle: Handle = async ({ event, resolve }) => {
-  console.debug("Initializing supabase client in locals...");
+  // console.debug("Initializing supabase client in locals...");
 
   // create supabase server client
   event.locals.supabase = createServerClient(SUPABASE_URL, SUPABASE_ANON_KEY, {

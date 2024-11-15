@@ -2,9 +2,8 @@ import { redirect } from '@sveltejs/kit';
 import type { LayoutServerLoad } from './$types';
 
 export const load = (async ({ locals : { supabase }, parent}) => {
-    //just await all the parent laoding
-    await parent();
-    console.info("[protected_routes] Checking for user object")
+    await parent(); //just await all the parent laoding
+    // console.info("[protected_routes] Checking for user object")
 
     // check if we have active user object:
     const { data, error } = await supabase.auth.getUser();

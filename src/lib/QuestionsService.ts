@@ -16,7 +16,6 @@ export class QuestionService {
     private VOTERS_TABLE = 'voters'
 
     constructor(supabaseInstance: SupabaseClient) {
-        //setup the needs here
         this.supaInstance = supabaseInstance;
     }
 
@@ -88,7 +87,19 @@ export class QuestionService {
             return Promise.reject(error);
         }
 
-        return Promise.resolve(data);
+        // manually order the results
+        const orderedData = data.sort((a,b) => { 
+            const aItem = a.voters_count.length;
+            const bItem = b.voters_count.length;
+
+            if( aItem > bItem ) {
+                return -1
+            } else {
+                return 1
+            }
+        });
+
+        return Promise.resolve(orderedData);
     }
 
     /**
@@ -111,6 +122,11 @@ export class QuestionService {
         return Promise.resolve(data);
     }
 
+    /**
+     * Checks if given question was answered by currently logged user
+     * @param questionID ID of the question 
+     * @returns `true` if given question has already been answered by current user
+     */
     async hasAnsweredQuestion(questionID: number): Promise<boolean> {
         // get commitment hash
         const commitmentHash = await this.getCommitHash(questionID);
@@ -129,6 +145,11 @@ export class QuestionService {
         return Promise.resolve(data !== null);
     }
 
+    /**
+     * Loads the scores for specified question
+     * @param questionID ID of the question 
+     * @returns `QuestionScore` model containing scores
+     */
     async loadQuestionScores(questionID: number): Promise<QuestionScores> {
         const { data, error } = await this.supaInstance
             .from(this.QUESTIONS_TABLE)
@@ -243,6 +264,11 @@ export class QuestionService {
         return Promise.resolve(true);
     }
 
+    /**
+     * Helper method that computes commit hash
+     * @param questionID ID of the question
+     * @returns A `string` digest of the particular question
+     */
     private async getCommitHash(questionID: number): Promise<string> {
         // get the user info
         const { data: { user }, error } = await this.supaInstance.auth.getUser();

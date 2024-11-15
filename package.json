@@ -1,8 +1,11 @@
 {
 	"name": "infoportal-full-solution",
-	"version": "1.2",
+	"version": "1.2.1",
 	"private": true,
-	"author": {"name": "Vëx", "url": "https://github.com./vexy"},
+	"author": {
+		"name": "Vëx",
+		"url": "https://github.com./vexy"
+	},
 	"description": "Simple implementation of publicly available voting station.",
 	"homepage": "https://infoportal.app",
 	"scripts": {
@@ -24,6 +27,7 @@
 		"globals": "^15.0.0",
 		"svelte": "^4.2.7",
 		"svelte-check": "^3.6.0",
+		"svelte-share-buttons-component": "^3.0.0",
 		"typescript": "^5.0.0",
 		"typescript-eslint": "^8.0.0",
 		"vite": "^5.0.3"

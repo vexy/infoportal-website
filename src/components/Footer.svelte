@@ -30,10 +30,10 @@
         </section>
     </div>
 
-    <!-- Social share -->
+    <!-- Social shares -->
     <div>
-        <div class="fb-share-button" data-href="https://infoportal.app" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Finfoportal.app%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div>
-        <a href="https://twitter.com/intent/tweet?button_hashtag=infoportal&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-text="На Инфопортал платформи можете сазнати више на разне теме" data-url="https://infoportal.app" data-lang="en" data-show-count="false">Tweet #button</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+        <!-- <div class="fb-share-button" data-href="https://infoportal.app" data-layout="button_count" data-size="large"><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Finfoportal.app%2F&amp;src=sdkpreparse" class="fb-xfbml-parse-ignore">Share</a></div> -->
+        <a href="https://twitter.com/intent/tweet?button_hashtag=infoportal&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-text="На Инфопортал платформи можете сазнати више на разне теме" data-url="https://infoportal.app" data-lang="en" data-show-count="false">Tweet #infoportal</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
 
     <p>Copyright © 2024 Veljko Tekelerovic</p>
