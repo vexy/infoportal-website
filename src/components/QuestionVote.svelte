@@ -86,6 +86,12 @@
         margin-inline: 1.5rem;
     }
 
+    hr {
+        border-style: dashed;
+        color: var(--orange);
+        width: -webkit-fill-available;
+    }
+
     fieldset {
         display: block;
         border: solid;
