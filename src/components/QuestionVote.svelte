@@ -93,6 +93,7 @@
     }
 
     fieldset {
+        margin-block: 1.2rem;
         display: block;
         border: solid;
         border-color: var(--orange);
