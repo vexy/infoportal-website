@@ -26,6 +26,17 @@ export interface QuestionScores extends QuestionMeta {
     total_voters: number
 }
 
+export interface Stats {
+    id: number
+    users_count: number,
+    questions_count: number,
+    country1: string,
+    country2: string
+    country3: string,
+    country4: string,
+    country5: string
+}
+
 export enum VOTE_OPTIONS {
     OPTION_1 = 1,
     OPTION_2,

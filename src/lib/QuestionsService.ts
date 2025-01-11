@@ -3,6 +3,7 @@ import type {
     QuestionOverview,
     QuestionMeta,
     QuestionScores,
+    Stats,
     VOTE_OPTIONS
 } from "$models/Models";
 
@@ -14,9 +15,27 @@ export class QuestionService {
     private QUESTIONS_TABLE = 'questions'
     private SCORES_TABLE = 'scores'
     private VOTERS_TABLE = 'voters'
+    private STATS_TABLE = 'stats'
 
     constructor(supabaseInstance: SupabaseClient) {
         this.supaInstance = supabaseInstance;
+    }
+
+    /**
+     * Returns latest website usage statistical data
+     * @returns `Stats` object containing results
+     */
+    async getWebsiteStats(): Promise<Stats> {
+        const { data, error } = await this.supaInstance
+            .from(this.STATS_TABLE)
+            .select()
+            .returns<Stats>()
+
+        // check for errors
+        if(error) { return Promise.reject(error); }
+
+        // return the results
+        return Promise.resolve(data);
     }
 
     /**

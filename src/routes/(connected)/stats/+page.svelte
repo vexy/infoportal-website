@@ -18,18 +18,22 @@
 
 <script lang="ts">
     export let data;
+
+    $: stats = data.statsObject;
 </script>
 
 <section>
     <h1>Статистика платформе</h1>
-    <p>Број постављених питања: {data.questionCount}</p>
-    <p>Број регистрованих корисника: {data.usersCount}</p>
+    <p>Број регистрованих корисника: {stats.users_count}</p>
+    <p>Број постављених питања: {stats.questions_count}</p>
 
     <p>Топ 5 земаља из које долазе корисници:</p>
     <ol>
-        {#each data.userCountries as country }    
-            <li>{country}</li>
-        {/each}
+        <li>{stats.country1}</li>
+        <li>{stats.country2}</li>
+        <li>{stats.country3}</li>
+        <li>{stats.country4}</li>
+        <li>{stats.country5}</li>
     </ol>
 
     <i>Статистика се освежава једном недељно</i>

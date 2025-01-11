@@ -11,7 +11,8 @@
 This repository contains full solution implementation of the publicly available counting/voting station, allowing anonymous interaction with content of the platform.  
 This codebase represents a variation of same concept, released as [web platform](https://github.com/vexy/infoportal) based on [smart contract](https://github.com/vexy/voting_platform).
 
-Platform is open to anyone with valid GMail account.
+Platform is open to anyone with valid GMail account.  
+Website location: https://infoportal.app
 
 
 ## Platform features
@@ -23,7 +24,7 @@ Platform is open to anyone with valid GMail account.
 - Anonymous interaction
 - Usage statistics
 
-> Current version: `1.2.3`
+> Current version: `1.3`
 
 ## TechStack
 Platform is made using `SvelteKit` and `TypeScript`. It uses `node 20.x` as a runtime engine.

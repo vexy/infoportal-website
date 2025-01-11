@@ -11,7 +11,7 @@
         />
     </a>
     <button on:click|self={ () => {goto("/question/new")} }>Ново питање</button>
-    <a href="/stats">
+    <a href="/stats" class="stats">
         <img 
             src="/poll.svg"
             alt="statistika"
@@ -39,6 +39,10 @@
 
     a {
         margin-inline: 0.5rem;
+    }
+
+    .stats:hover {
+        scale: 1.2;
     }
 
     button {

@@ -59,7 +59,7 @@
                     value={VOTE_OPTIONS[8]}
                     bind:group={optionChoice}
                 />
-                <label for="inadequate">Не адекватно питање</label>
+                <label for="inadequate">Неадекватно питање</label>
             </div>
         </fieldset>
     {:else}
