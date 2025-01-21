@@ -67,10 +67,29 @@
 {/if}
 <div id="googleSignInButton"></div>
 
+<h3>У сарадњи са</h3>
+<a href="https://www.pokretmoba.com/%d0%b8%d0%bd%d1%84%d0%be%d0%bf%d0%be%d1%80%d1%82%d0%b0%d0%bb/" target="_blank">
+    <img 
+        class="moba-logo"
+        src="logo_moba.png" 
+        alt="Logo pokreta Moba" 
+    />
+</a>
+
 <style>
     h1 {
         text-transform: uppercase;
         margin-bottom: 0;
+    }
+
+    h3 {
+        padding-top: 2.25rem;
+        margin-bottom: 0.4rem;
+    }
+
+    .moba-logo {
+        height: 90px;
+        border-radius: 10px;
     }
 
     hr {

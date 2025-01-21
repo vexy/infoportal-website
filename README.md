@@ -24,7 +24,7 @@ Website location: https://infoportal.app
 - Anonymous interaction
 - Usage statistics
 
-> Current version: `1.3`
+> Current version: `1.3.1`
 
 ## TechStack
 Platform is made using `SvelteKit` and `TypeScript`. It uses `node 20.x` as a runtime engine.
