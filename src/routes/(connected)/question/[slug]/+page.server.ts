@@ -45,7 +45,6 @@ export const load = (async ({ locals: {supabase}, params, parent }) => {
     // and load appropriate dataset
     if(hasAnsweredQuestion) {
         questionScores = await q_service.loadQuestionScores(questionID)
-        
     } else {
         questionMeta = await q_service.loadQuestionMeta(questionID)
     }

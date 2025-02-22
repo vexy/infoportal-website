@@ -1,11 +1,11 @@
 <footer>
     <div>
         <section>
-            <a href="/">
+            <a href="/list">
                 <img
-                src="/favicon.svg"
-                alt="infoportal_logo"
-                height="30"
+                    src="/favicon.svg"
+                    alt="infoportal_logo"
+                    height="30"
                 />
             </a>
             <span>INFOPORTAL</span>
@@ -36,7 +36,10 @@
         <a href="https://twitter.com/intent/tweet?button_hashtag=infoportal&ref_src=twsrc%5Etfw" class="twitter-hashtag-button" data-text="На Инфопортал платформи можете сазнати више на разне теме" data-url="https://infoportal.app" data-lang="en" data-show-count="false">Tweet #infoportal</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
     </div>
 
-    <p>Copyright © 2024 Veljko Tekelerovic</p>
+    <copyright>
+        <span>Copyright © 2024 Veljko Tekelerovic</span>
+        <span>Made in Serbia 🇷🇸</span>
+    </copyright>
 </footer>
 
 <style>
@@ -54,6 +57,11 @@
         justify-content: space-around;
         gap: 5px;
         width: 100%;
+    }
+
+    copyright {
+        display: grid;
+        justify-items: center;
     }
 
     a {

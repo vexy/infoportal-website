@@ -1,6 +1,8 @@
 <svelte:head>
     <meta name="description" content="Infoportal.app | Ваша питања, одговори, ставови и још много тога." />
-    <meta name="keywords" content="people, question, opinion, vote, poll, survey, results, infoportal, stats">
+    <meta name="keywords" content="people, question, opinion, vote, poll, survey, results, infoportal">
+    <meta name="keywords" content="usage, stats, statistics">
+    <meta name="keywords" content="user, count, countries">
 
     <title>Инфопортал - статистика платформе</title>
 </svelte:head>
@@ -17,15 +19,27 @@
 </svelte:document>
 
 <script lang="ts">
+    import PlatformLogo from "$components/PlatformLogo.svelte";
+
     export let data;
 
     $: stats = data.statsObject;
 </script>
 
 <section>
+    <PlatformLogo />
     <h1>Статистика платформе</h1>
-    <p>Број регистрованих корисника: {stats.users_count}</p>
-    <p>Број постављених питања: {stats.questions_count}</p>
+
+    <summary>
+        <div>
+            <p>Број регистрованих корисника:</p>
+            <span>{stats.users_count}</span>
+        </div>
+        <div>
+            <p>Број постављених питања:</p>
+            <span>{stats.questions_count}</span>
+        </div>
+    </summary>
 
     <p>Топ 5 земаља из које долазе корисници:</p>
     <ol>
@@ -48,7 +62,30 @@
     }
 
     h1 {
-        margin-bottom: 5rem;
+        margin-bottom: 3.5rem;
+    }
+
+    summary {
+        display: flex;
+        flex-direction: column;
+    }
+
+    div {
+        margin: none;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        gap: 1rem;
+    }
+
+    div > p {
+        margin: 5px;
+    }
+
+    span {
+        min-width: 30px;
+        text-align: right;
+        font-weight: 700;
     }
 
     i {

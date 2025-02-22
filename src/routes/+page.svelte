@@ -1,4 +1,5 @@
 <script lang="ts">
+    import MobaLogo from "$components/MobaLogo.svelte";
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
     import { bounceIn } from "svelte/easing";
@@ -67,14 +68,12 @@
 {/if}
 <div id="googleSignInButton"></div>
 
+<div class="learn-more">
+    <a href="/learn-more">Сазнај више...</a>
+</div>
+
 <h3>У сарадњи са</h3>
-<a href="https://www.pokretmoba.com/%d0%b8%d0%bd%d1%84%d0%be%d0%bf%d0%be%d1%80%d1%82%d0%b0%d0%bb/" target="_blank">
-    <img 
-        class="moba-logo"
-        src="logo_moba.png" 
-        alt="Logo pokreta Moba" 
-    />
-</a>
+<MobaLogo />
 
 <style>
     h1 {
@@ -83,13 +82,25 @@
     }
 
     h3 {
-        padding-top: 2.25rem;
+        padding-top: 1rem;
         margin-bottom: 0.4rem;
     }
 
-    .moba-logo {
-        height: 90px;
+    .learn-more {
+        margin-top: 2rem;
+        padding: 0.7rem;
+        border: 1px solid var(--blue-light);
         border-radius: 10px;
+    }
+
+    .learn-more > a {
+        color: var(--white);
+        text-size-adjust: 90%;
+        text-decoration: none;
+    }
+
+    .learn-more:hover {
+        background-color: var(--blue-medium);
     }
 
     hr {

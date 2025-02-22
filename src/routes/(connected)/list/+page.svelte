@@ -94,6 +94,14 @@
         display: flex;
         align-items: center;
     }
+    
+    input {
+        letter-spacing: 1.25px;
+        margin-block: 0.85rem;
+        margin-inline-start: 0.5rem;
+        min-width: 210px;
+        border: 1.75px solid var(--footer);
+    }
 
     .search-button {
         display: inline-flex;
@@ -126,12 +134,6 @@
         color: var(--orange);
     }
 
-    input {
-        letter-spacing: 1.5px;
-        margin-block: 0.85rem;
-        margin-inline-start: 0.5rem;
-        min-width: 210px;
-    }
 
     button {
         margin-inline: 0.75rem;
@@ -139,10 +141,10 @@
 
     questions-table {
         width: 100vw;
-        margin: auto;
 
         display: flex;
         flex-direction: column;
+        gap: 7px;
     }
 
     tr {
@@ -160,6 +162,7 @@
         white-space: nowrap;
         text-overflow: ellipsis;
         margin-inline-start: 0.25em;
+        font-size: 110%;
     }
 
     a:hover {

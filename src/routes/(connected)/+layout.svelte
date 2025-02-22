@@ -16,7 +16,7 @@
 
 <Header />
 
-<section data-sveltekit-preload-data="hover">
+<section>
     <slot />
 </section>
 
