@@ -4,17 +4,6 @@
 
     <title>Инфопортал - {getPageTitle()}</title>
 </svelte:head>
-<svelte:document>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0RR1V030Z"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        
-        gtag('config', 'G-P0RR1V030Z');
-    </script>
-</svelte:document>
 
 <script lang="ts">
     import QuestionVote from '$components/QuestionVote.svelte';

@@ -5,17 +5,6 @@
 
     <title>Инфопортал - сазнај више</title>
 </svelte:head>
-<svelte:document>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0RR1V030Z"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        
-        gtag('config', 'G-P0RR1V030Z');
-        </script>
-</svelte:document>
 <script>
     import MobaLogo from "$components/MobaLogo.svelte";
     import PlatformLogo from "$components/PlatformLogo.svelte";
