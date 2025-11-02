@@ -1,5 +1,4 @@
 <script lang="ts">
-    import MobaLogo from "$components/MobaLogo.svelte";
     import { goto } from "$app/navigation";
     import { onMount } from "svelte";
     import { bounceIn } from "svelte/easing";
@@ -69,11 +68,8 @@
 <div id="googleSignInButton"></div>
 
 <div class="learn-more">
-    <a href="/learn-more">Сазнај више...</a>
+    <a href="/learn-more">Сазнај више о платформи...</a>
 </div>
-
-<h3>У сарадњи са</h3>
-<MobaLogo />
 
 <style>
     h1 {
