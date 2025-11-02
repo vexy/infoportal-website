@@ -9,7 +9,7 @@
     let optionChoice = -1;  //indicates no selection has been made
 </script>
 
-<form method="POST" action="?/commitOption">
+<form method="POST" action="/question/{meta.id}?/commitOption">
     {#each meta.question_options as voteOption, index }
         <div>
             <input
