@@ -5,19 +5,20 @@
     <title>Инфопортал - листа питања</title>
 </svelte:head>
 <script lang="ts">
-    import { navigating } from '$app/stores';
+    import { navigating } from '$app/state';
     import type { LayoutData } from './$types';
+    import type { Snippet } from 'svelte';
     import Loader from '$components/Loader.svelte';
-    
-    export let data: LayoutData;
+
+    let { data, children }: {data: LayoutData, children: Snippet} = $props();
 </script>
     
 {#await data.allQuestions}
     <Loader message="Учитавање свих питања..." />
 {:then}
-    {#if $navigating?.complete}
+    {#if navigating?.complete}
         <Loader message="Учитавање питања..." />
     {:else}
-        <slot />
+        {@render children?.()}
     {/if}
 {/await}
