@@ -1,9 +1,9 @@
 <script>
     import { goto } from "$app/navigation";
-    import { page } from "$app/stores";
+    import { page } from "$app/state";
 
-    $: _code = $page.url.searchParams.get('code')
-    $: _reason = $page.url.searchParams.get('reason')
+    let _reason = $derived(page.url.searchParams.get('reason'))
+    let _code = $derived(page.url.searchParams.get('code'))
 </script>
 
 <h1>Инфопортал</h1>
@@ -17,7 +17,7 @@
     </div>
 {/if}
 
-<button on:click={() => { goto('/') }}>Почетна</button>
+<button onclick={() => { goto('/') }}>Почетна</button>
 
 <style>
     h1 {
