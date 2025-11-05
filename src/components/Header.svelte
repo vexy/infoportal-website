@@ -10,7 +10,7 @@
             height="30"
         />
     </a>
-    <button on:click|self={ () => {goto("/question/new")} }>Ново питање</button>
+    <button onclick={() => {goto("/question/new")}}>Ново питање</button>
     <a href="/stats" class="stats">
         <img 
             src="/poll.svg"

@@ -2,11 +2,15 @@
     import { VOTE_OPTIONS, type QuestionMeta } from '$models/Models';
     import { fade } from 'svelte/transition';
 
-    export let form;        // form object
-    export let meta: QuestionMeta;
+    let { form, meta }: { form: FormData, meta: QuestionMeta } = $props();
 
-    let showAdditionals = false;
-    let optionChoice = -1;  //indicates no selection has been made
+    let showAdditionals = $state(false);
+    let optionChoice = $state(-1);  //indicates no selection has been made
+
+    function toggleAdditionalOptionsDisplay(event: Event) {
+        event.preventDefault();
+        showAdditionals = !showAdditionals;
+    }
 </script>
 
 <form method="POST" action="/question/{meta.id}?/commitOption">
@@ -63,12 +67,12 @@
             </div>
         </fieldset>
     {:else}
-        <button on:click|self|preventDefault={() => {showAdditionals = !showAdditionals}}>Додатни одговори</button>
+        <button onclick={(event) => toggleAdditionalOptionsDisplay(event) }>Додатни одговори</button>
     {/if}
 
     <!-- check for errors  -->
     {#if form?.success}
-        <span>Дошло је до грешке приликом постављања питања...</span>
+        <span>Дошло је до грешке приликом слања одговора...</span>
     {/if}
 
     <button type="submit" disabled={optionChoice === -1}>
