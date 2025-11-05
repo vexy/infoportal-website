@@ -7,18 +7,18 @@ export const POST: RequestHandler = async ({ locals: { supabase }, url }) => {
     const authCredentials = url.searchParams.get('auth');
     if(authCredentials) {
         // perform signup via google
-        const authResponse = await supabase.auth.signInWithIdToken({
+        const { data, error } = await supabase.auth.signInWithIdToken({
             provider: 'google',
             token: authCredentials,
         })
         //TODO: add NONCE
 
         // check for errors
-        if(authResponse.error) {
+        if(error) {
             console.error("Signup error. Will redirect to /auth-error")
             
-            const reason = authResponse.error.message
-            const code = authResponse.error.code
+            const reason = error.message
+            const code = error.code
             const errorURL = `/auth-error?reason=${reason}&code=${code}`
 
             throw redirect(303, errorURL);
