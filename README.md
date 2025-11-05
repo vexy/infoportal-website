@@ -7,8 +7,8 @@
     <p><a href="https://infoportal.app">INFOPORTAL.APP</a></p>
 </div>
 
-# Counting platform
-This repository contains full solution implementation of the publicly available counting/voting station, allowing anonymous interaction with content of the platform.  
+# Public polling station
+This repository contains full solution implementation of the publicly available polling/voting station, allowing anonymous usage and interaction with content of the platform.  
 This codebase represents a variation of same concept, released as [web platform](https://github.com/vexy/infoportal) based on [smart contract](https://github.com/vexy/voting_platform).
 
 Platform is open to anyone with valid GMail account.  
@@ -24,32 +24,33 @@ Website location: https://infoportal.app
 - Anonymous interaction
 - Usage statistics
 
-> Current version: `1.4.2`
+> Current version: `1.5`
 
 ## TechStack
-Platform is made using `SvelteKit` and `TypeScript`. It uses `node 20.x` as a runtime engine.
+Platform is made using `SvelteKit` and `TypeScript`. It uses `node 20.x` and [`bun`](https://bun.com) as package manager/runtime engine. Both of these software pieces are needed to be installed on a target machine.
 
 To get the website running locally, run:  
 ```bash
-$ npm install  # wait to complete
-$ npm run dev
+$ bun install  # wait to complete
+$ bun run dev
 ```  
 
 To build for `production` use (typical):
 ```bash
-$ npm run build
+$ bun run build
 ```
 
 Platform uses [Supabase](https://supabase.com) as the general backend system, but it can use any SQL backed processing engine. Check [this helper class](/src/lib/QuestionsService.ts) for more info.
 
-### Contribution
+# Contribution
 Website design: [Aleksandra @ Behance](https://www.behance.net/aleksandrajolka)  
 Initial React version: [turicam](https://github.com/turicam)
 
-_Want to contribute_ ?  
-Check out [project pages](https://github.com/users/vexy/projects/2) for more info on the actual issues.
+> [!TIP]
+> _Want to contribute_ ?  
+> Check out [project pages](https://github.com/users/vexy/projects/2) for more info on the actual issues.
 
-### Licence
+# Licence
 Licensed under GPL-3.0 license.  
 
 ----
