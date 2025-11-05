@@ -9,10 +9,10 @@
     import QuestionVote from '$components/QuestionVote.svelte';
     import ScoreDisplay from '$components/ScoreDisplay.svelte';
 
-    export let data;        // pageload export 
+    let { data } = $props();
 
-    $: meta = data.meta;
-    $: scores = data.scores;
+    let meta = $derived(data.meta);
+    let scores = $derived(data.scores);
 
     function getPageTitle() {
         return meta?.title || scores?.title;

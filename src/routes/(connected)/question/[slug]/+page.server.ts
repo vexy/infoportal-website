@@ -19,7 +19,7 @@ export const actions = {
 
             return { success: true }
         } catch(err) {
-            console.error("FAILED: ")
+            console.error("Quesiton vote failed. Reason: ")
             console.error(err)
             return { success: false }
         }
