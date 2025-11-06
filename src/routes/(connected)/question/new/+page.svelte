@@ -29,7 +29,7 @@
     </dialog>
 {/if}
 
-<form method="POST" action="?/postQuestion">
+<form method="POST" action="/question/new?/postQuestion">
     <input 
         name="title"
         type="text"
@@ -39,7 +39,7 @@
         <span>Наслов питања је обавезан...</span>
     {/if}
 
-    <options_container>
+    <options-container>
         <h3>Понуђени одговори:</h3>
         {#each title_options as _, index}    
             <div>
@@ -57,7 +57,7 @@
                 <!-- <img src='/delete-icon.svg' alt='delete_icon' width="20px" height="25px"/> -->
             </div>
         {/each}
-    </options_container>
+    </options-container>
 
     <!-- TODO: ADD LOADER LATER -->
     <button type="submit">
@@ -66,10 +66,10 @@
 </form>
 
 <style>
-
     h1 {
         margin: 0.3em;
     }
+
     form {
         display: flex;
         flex-direction: column;
@@ -87,7 +87,7 @@
         text-shadow: #fad9cecc -1px 0px 1.25px;
     }
 
-    options_container {
+    options-container {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -96,11 +96,11 @@
         margin-bottom: 1em;
     }
 
-    options_container div > input {
+    options-container div > input {
         min-width: 130px;
     }
 
-    options_container > div {
+    options-container > div {
         display: flex;
         align-items: center;
         justify-content: space-between;
