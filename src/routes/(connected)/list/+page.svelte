@@ -1,13 +1,13 @@
 <script lang="ts">
     import type { QuestionOverview } from '$models/Models';
 
-    export let data;
-    $: questions = data.allQuestions;
+    let { data } = $props();
+    const questions = $derived(data.allQuestions);
 
-    let searchTerm: string = ''
-    let showResetArea: boolean = false;
-    let hasSearchResults: boolean = false;
-    let tableData: QuestionOverview[];
+    let searchTerm: string = $state('');
+    let showResetArea: boolean = $state(false);
+    let hasSearchResults: boolean = $state(false);
+    let tableData: QuestionOverview[] = $state([]);
 
     async function performSearch() {
         // check if we just need to reset
@@ -41,7 +41,7 @@
             placeholder="Претражите наслов питања"
             bind:value={searchTerm}
         />
-        <button class="search-button" on:click={performSearch}>
+        <button class="search-button" onclick={performSearch}>
             <img 
                 src="/search.svg" 
                 alt="search_icon"
@@ -54,7 +54,7 @@
     {#if showResetArea}
         <reset-area>
             <span>Пронађено: {tableData.length} питања</span>
-            <button on:click={resetSearch}>
+            <button onclick={resetSearch}>
                 <i>Прикажи сва питања</i>
                 <img 
                     src="/clear.svg" 
@@ -71,11 +71,13 @@
     {#each (hasSearchResults ? tableData : questionSet) as questionItem }
     <!-- NOTE: created_at field can be used somewhere -->
     <tr>
-        <a href='/question/{questionItem.id}'>{questionItem.title}</a>
-        <voters-count>
-            <img src="/people.svg" alt="vote_count" height="21px" width="21px" />
-            { questionItem.voters_count.length }
-        </voters-count>
+        <td>
+            <a href='/question/{questionItem.id}'>{questionItem.title}</a>
+            <voters-count>
+                <img src="/people.svg" alt="vote_count" height="21px" width="21px" />
+                { questionItem.voters_count.length }
+            </voters-count>
+        </td>
     </tr>
     {/each}
 {/await}
@@ -140,6 +142,7 @@
     }
 
     questions-table {
+        margin-top: 0.25rem;
         width: 100vw;
 
         display: flex;
@@ -147,8 +150,8 @@
         gap: 7px;
     }
 
-    tr {
-        margin-inline: 0.1rem;
+    td {
+        margin-inline: 0.125rem;
 
         display: flex;
         flex-wrap: nowrap;

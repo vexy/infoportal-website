@@ -1,23 +1,13 @@
-<svelte:document>
-    <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-P0RR1V030Z"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-        
-        gtag('config', 'G-P0RR1V030Z');
-    </script>
-</svelte:document>
-
 <script>
     import Header from "$components/Header.svelte";
+
+    let { children } = $props();
 </script>
 
 <Header />
 
 <section>
-    <slot />
+    {@render children?.()}
 </section>
 
 <style>

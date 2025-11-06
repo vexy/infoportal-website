@@ -2,8 +2,7 @@
     import { VOTE_OPTIONS, type QuestionScores } from '$models/Models';
     import { goto } from '$app/navigation';
 
-    //contains actual score data
-    export let scores: QuestionScores;
+    let { scores }: { scores: QuestionScores } = $props();
 
     function getMeterValue(option: VOTE_OPTIONS): number {
         return (scores.option_scores[option] / scores!.total_voters) * 100
@@ -41,7 +40,7 @@
             high="75"
             optimum="80"
             value={getMeterValue(index)}
-        />
+        ></meter>
     {/each}
 
     <hr>
@@ -71,7 +70,7 @@
 
     <button-section>
         <!-- TODO: add share button -->
-        <button on:click={ () => { goto('/list') }}>Назад</button>
+        <button onclick={() => { goto('/list') }}>Назад</button>
     </button-section>
 </score-container>
 

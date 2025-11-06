@@ -10,9 +10,9 @@
 <script lang="ts">
     import PlatformLogo from "$components/PlatformLogo.svelte";
 
-    export let data;
+    let { data } = $props();
 
-    $: stats = data.statsObject;
+    let stats = $derived(data.statsObject);
 </script>
 
 <section>

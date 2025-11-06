@@ -4,7 +4,7 @@
     import { bounceIn } from "svelte/easing";
     import { blur, fade } from "svelte/transition";
 
-    let showSubtitle = false;
+    let showSubtitle = $state(false);
 
     async function handleGoogleLogin(response) {
         // check if there's any response
@@ -75,11 +75,6 @@
     h1 {
         text-transform: uppercase;
         margin-bottom: 0;
-    }
-
-    h3 {
-        padding-top: 1rem;
-        margin-bottom: 0.4rem;
     }
 
     .learn-more {
