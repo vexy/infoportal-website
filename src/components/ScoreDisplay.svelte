@@ -1,8 +1,10 @@
 <script lang="ts">
     import { VOTE_OPTIONS, type QuestionScores } from '$models/Models';
     import { goto } from '$app/navigation';
+    import Chart from '$components/Chart.svelte';
 
     let { scores }: { scores: QuestionScores } = $props();
+    let showChart = $state(false);
 
     function getMeterValue(option: VOTE_OPTIONS): number {
         return (scores.option_scores[option] / scores!.total_voters) * 100
@@ -25,23 +27,31 @@
 
         return ((extrasCount / scores!.total_voters) * 100).toFixed(1);
     }
+
+    function switchDataDisplay() {
+        showChart = !showChart
+    }
 </script>
 
 <score-container>
-    {#each scores.question_options as voteOption, index }
-        <div>
-            <p>{voteOption}</p>
-            <p><b>{getScorePercentage(index)} %</b></p>
-        </div>
-        <meter 
-            min="0"
-            max="100"
-            low="33"
-            high="75"
-            optimum="80"
-            value={getMeterValue(index)}
-        ></meter>
-    {/each}
+    {#if showChart}
+        <Chart chartData={scores}/>
+    {:else}
+        {#each scores.question_options as voteOption, index }
+            <div>
+                <p>{voteOption}</p>
+                <p><b>{getScorePercentage(index)} %</b></p>
+            </div>
+            <meter 
+                min="0"
+                max="100"
+                low="33"
+                high="75"
+                optimum="80"
+                value={getMeterValue(index)}
+            ></meter>
+        {/each}
+    {/if}
 
     <hr>
 
@@ -70,8 +80,18 @@
 
     <button-section>
         <!-- TODO: add share button -->
+        <button class='chart-button' onclick={() => {switchDataDisplay()}}>
+            {#if showChart}
+                <img class='chart-images' src="/bar-chart.svg" alt="Show bar chart" />
+                <span>Прикажи статистику</span>
+            {:else}
+                <img class='chart-images' src='/pie-chart.svg' alt="Show pie chart" />
+                <span>Прикажи графикон</span>
+            {/if}
+        </button>
         <button onclick={() => { goto('/list') }}>Назад</button>
     </button-section>
+
 </score-container>
 
 <style>
@@ -128,7 +148,29 @@
 
     button-section {
         display: flex;
-        justify-content: space-evenly;
-        margin: 1.5rem;
+        justify-content: space-between;
+        margin-block: 1.5rem;
+        align-items: center;
+    }
+
+    button-section > button > span {
+        font-size: smaller;
+    }
+
+    .chart-button {
+        all: unset;
+        align-self: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .chart-button:hover {
+        scale: 1.05;
+    }
+
+    .chart-images {
+        height: 45px;
+        width: 45px;
     }
 </style>

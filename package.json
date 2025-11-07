@@ -1,6 +1,6 @@
 {
 	"name": "infoportal-full-solution",
-	"version": "1.5",
+	"version": "1.5.1",
 	"private": true,
 	"author": {
 		"name": "Vëx",
@@ -22,6 +22,7 @@
 		"@sveltejs/kit": "^2.48.4",
 		"@sveltejs/vite-plugin-svelte": "^4.0.4",
 		"@types/eslint": "^9.6.1",
+		"chart.js": "^4.5.1",
 		"eslint": "^9.39.1",
 		"eslint-plugin-svelte": "^2.46.1",
 		"globals": "^15.15.0",
